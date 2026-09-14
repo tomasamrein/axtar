@@ -1,0 +1,12 @@
+:root{
+  --border-w: 1.5px;
+  --border-w-thick: 2px;
+
+  --shadow-hard-sm: 4px 4px 0 0 var(--ink-950);
+  --shadow-hard: 8px 8px 0 0 var(--ink-950);
+  --shadow-hard-inverse: 8px 8px 0 0 var(--ink-000);
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration: 200ms;
+}

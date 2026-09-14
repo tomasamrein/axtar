@@ -1,0 +1,25 @@
+.section {
+  background: var(--surface);
+  border-top: var(--border-w) solid var(--ink-950);
+}
+
+.inner {
+  padding-block: var(--space-9);
+}
+
+.heading {
+  margin: 0 0 var(--space-6);
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+}
+
+.cardWrap {
+  max-width: 480px;
+}
+
+@media (max-width: 640px) {
+  .inner {
+    padding-block: var(--space-7);
+  }
+}

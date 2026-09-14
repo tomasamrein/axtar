@@ -1,0 +1,70 @@
+.header {
+  border-bottom: var(--border-w) solid var(--ink-950);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: var(--text);
+}
+
+.logo {
+  height: 28px;
+  width: auto;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  letter-spacing: var(--tracking-tight);
+  white-space: nowrap;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-7);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav a {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  color: var(--text);
+  border-bottom: 1.5px solid transparent;
+  transition: border-color var(--duration-fast) var(--ease), color var(--duration-fast) var(--ease);
+}
+
+.nav a:hover {
+  color: var(--accent-copper);
+  border-color: var(--accent-copper);
+}
+
+@media (max-width: 640px) {
+  .nav {
+    display: none;
+  }
+
+  .wordmark {
+    font-size: var(--text-base);
+  }
+}

@@ -1,0 +1,113 @@
+.section {
+  background: var(--surface-alt);
+  border-top: var(--border-w) solid var(--ink-950);
+}
+
+.inner {
+  padding-block: var(--space-8) var(--space-9);
+}
+
+.heading {
+  margin: 0 0 var(--space-6);
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 360px));
+  justify-content: center;
+  gap: var(--space-6);
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+  border: var(--border-w-thick) solid var(--ink-950);
+  box-shadow: var(--shadow-hard);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, var(--cut-md) 100%, 0 calc(100% - var(--cut-md)));
+  transition: box-shadow var(--duration) var(--ease), transform var(--duration) var(--ease);
+}
+
+.card:hover {
+  box-shadow: 10px 10px 0 0 var(--ink-950);
+  transform: translate(-2px, -2px);
+}
+
+.watermark {
+  position: absolute;
+  top: -0.35em;
+  right: var(--space-4);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 6rem;
+  line-height: 1;
+  color: var(--ink-100);
+  pointer-events: none;
+  user-select: none;
+}
+
+.cardBody {
+  position: relative;
+  padding: var(--space-6) var(--space-5) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-height: 240px;
+}
+
+.index {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  color: var(--ink-500);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+}
+
+.description {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+  flex: 1;
+}
+
+.priceRow {
+  padding-top: var(--space-3);
+  border-top: var(--border-w) solid var(--border-soft);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(240px, 340px));
+  }
+}
+
+@media (max-width: 640px) {
+  .inner {
+    padding-block: var(--space-6) var(--space-7);
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cardBody {
+    padding: var(--space-5);
+    min-height: 0;
+  }
+
+  .watermark {
+    font-size: 4rem;
+  }
+}

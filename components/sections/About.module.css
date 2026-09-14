@@ -1,0 +1,73 @@
+.section {
+  background: var(--surface);
+  border-top: var(--border-w) solid var(--ink-950);
+}
+
+.inner {
+  padding-block: var(--space-9);
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.markBox {
+  border: var(--border-w) solid var(--ink-950);
+  padding: var(--space-7) var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mark {
+  height: 96px;
+  width: auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+}
+
+.body {
+  margin: 0;
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+  max-width: 560px;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+
+  .markBox {
+    max-width: 240px;
+  }
+}
+
+@media (max-width: 640px) {
+  .inner {
+    padding-block: var(--space-7);
+    gap: var(--space-6);
+  }
+
+  .mark {
+    height: 72px;
+  }
+}

@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/Badge";
+import { Reveal } from "@/components/ui/Reveal";
 import styles from "./Services.module.css";
 
 const SERVICES = [
@@ -34,7 +35,7 @@ export function Services() {
     <section id="servicios" className={styles.section}>
       <div className={`container ${styles.inner}`}>
         <h2 className={styles.heading}>Lo que hacemos</h2>
-        <div className={styles.grid}>
+        <Reveal as="div" className={styles.grid} stagger>
           {SERVICES.map((service, i) => (
             <div key={service.title} className={styles.card}>
               <span className={styles.watermark} aria-hidden="true">
@@ -50,7 +51,7 @@ export function Services() {
               </div>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

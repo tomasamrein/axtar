@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/ui/Reveal";
 import styles from "./Process.module.css";
 
 const STEPS = [
@@ -27,18 +28,23 @@ export function Process() {
   return (
     <section id="proceso" className={styles.section}>
       <div className={`container ${styles.inner}`}>
-        <h2 className={styles.heading}>Cómo trabajamos</h2>
-        <p className={styles.subheading}>
-          Un proceso claro, de punta a punta, sin sorpresas en el medio.
-        </p>
-        <div className={styles.grid}>
-          {STEPS.map((step, i) => (
-            <div key={step.title} className={styles.cell}>
-              <span className={styles.index}>0{i + 1}</span>
-              <h3 className={styles.title}>{step.title}</h3>
-              <p className={styles.description}>{step.description}</p>
-            </div>
-          ))}
+        <Reveal as="div">
+          <h2 className={styles.heading}>Cómo trabajamos</h2>
+          <p className={styles.subheading}>
+            Un proceso claro, de punta a punta, sin sorpresas en el medio.
+          </p>
+        </Reveal>
+        <div className={styles.timelineWrap}>
+          <div className={styles.line} aria-hidden="true" />
+          <Reveal as="div" className={styles.timeline} stagger>
+            {STEPS.map((step, i) => (
+              <div key={step.title} className={styles.step}>
+                <span className={styles.node}>0{i + 1}</span>
+                <h3 className={styles.title}>{step.title}</h3>
+                <p className={styles.description}>{step.description}</p>
+              </div>
+            ))}
+          </Reveal>
         </div>
       </div>
     </section>

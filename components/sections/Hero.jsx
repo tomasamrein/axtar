@@ -4,7 +4,7 @@ import { RotatingWord } from "@/components/ui/RotatingWord";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import styles from "./Hero.module.css";
 
-const ROTATING_WORDS = ["business", "venture", "store", "company"];
+const ROTATING_WORDS = ["business", "store", "company"];
 
 export function Hero() {
   return (

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Badge } from "@/components/ui/Badge";
+import { Reveal } from "@/components/ui/Reveal";
 import styles from "./About.module.css";
 
 const FACTS = ["+2 años de experiencia", "Santo Tomé, Santa Fe", "Un solo desarrollador, foco total"];
@@ -7,7 +8,7 @@ const FACTS = ["+2 años de experiencia", "Santo Tomé, Santa Fe", "Un solo desa
 export function About() {
   return (
     <section id="estudio" className={styles.section}>
-      <div className={`container ${styles.inner}`}>
+      <Reveal as="div" className={`container ${styles.inner}`} stagger>
         <div className={styles.markBox}>
           <Image src="/logo-mark.png" alt="Axtar Studio" width={96} height={96} className={styles.mark} />
         </div>
@@ -24,7 +25,7 @@ export function About() {
             ))}
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

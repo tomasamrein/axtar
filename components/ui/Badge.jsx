@@ -1,10 +1,11 @@
 import React from 'react';
 
+// 'teal' tone intentionally not exposed here: --accent-teal has no real use case
+// on the site yet. Add it back if a genuine secondary-state need shows up.
 const TONES = {
   ink: { background: 'var(--ink-950)', color: 'var(--ink-000)', border: 'var(--ink-950)' },
   outline: { background: 'transparent', color: 'var(--ink-950)', border: 'var(--ink-950)' },
   copper: { background: 'var(--accent-copper-dim)', color: 'var(--ink-950)', border: 'var(--accent-copper)' },
-  teal: { background: 'var(--accent-teal-dim)', color: 'var(--ink-950)', border: 'var(--accent-teal)' },
 };
 
 export function Badge({ children, tone = 'outline' }) {

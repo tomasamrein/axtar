@@ -1,0 +1,67 @@
+.wrap {
+  position: relative;
+  height: 200vh;
+  background: var(--ink-000);
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.veil {
+  position: absolute;
+  inset: 0;
+  background: var(--ink-950);
+  will-change: opacity;
+}
+
+.mark {
+  position: relative;
+  z-index: 1;
+  width: 72px;
+  height: 72px;
+  background-color: var(--accent-copper);
+  -webkit-mask-image: url("/logo-mark.png");
+  mask-image: url("/logo-mark.png");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  will-change: opacity, transform;
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    height: 160vh;
+  }
+
+  .mark {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap {
+    height: auto;
+  }
+
+  .sticky {
+    position: relative;
+    height: auto;
+    padding-block: var(--space-8);
+  }
+
+  .veil {
+    position: absolute;
+    opacity: 1 !important;
+  }
+}

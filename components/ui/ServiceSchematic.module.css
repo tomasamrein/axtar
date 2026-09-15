@@ -1,0 +1,57 @@
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.line,
+.solid,
+.faint,
+.wire,
+.thick,
+.check,
+.dot {
+  vector-effect: non-scaling-stroke;
+}
+
+.line {
+  fill: none;
+  stroke: var(--ink-500);
+  stroke-width: 1.5;
+}
+
+.solid {
+  fill: var(--accent-copper);
+  stroke: none;
+}
+
+.faint {
+  fill: var(--ink-700);
+  stroke: none;
+}
+
+.wire {
+  fill: none;
+  stroke: var(--accent-copper);
+  stroke-width: 1.5;
+}
+
+.thick {
+  fill: none;
+  stroke: var(--ink-500);
+  stroke-width: 4;
+}
+
+.check {
+  fill: none;
+  stroke: var(--accent-copper);
+  stroke-width: 3;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.dot {
+  fill: var(--accent-copper);
+  stroke: none;
+}

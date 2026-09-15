@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Badge } from "@/components/ui/Badge";
 import { Reveal } from "@/components/ui/Reveal";
 import styles from "./About.module.css";
@@ -10,7 +9,7 @@ export function About() {
     <section id="estudio" className={styles.section}>
       <Reveal as="div" className={`container ${styles.inner}`} stagger>
         <div className={styles.markBox}>
-          <Image src="/logo-mark.png" alt="Axtar Studio" width={96} height={96} className={styles.mark} />
+          <span className={styles.mark} role="img" aria-label="Axtar Studio" />
         </div>
         <div className={styles.content}>
           <h2 className={styles.heading}>Sobre Axtar</h2>
@@ -19,7 +18,7 @@ export function About() {
           </p>
           <div className={styles.facts}>
             {FACTS.map((fact) => (
-              <Badge key={fact} tone="outline">
+              <Badge key={fact} tone="outlineInverse">
                 {fact}
               </Badge>
             ))}

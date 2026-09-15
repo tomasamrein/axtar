@@ -1,43 +1,85 @@
 .section {
-  background: var(--surface-alt);
-  border-top: var(--border-w) solid var(--ink-950);
+  background: var(--ink-950);
+  color: var(--text-inverse);
+  border-top: var(--border-w) solid var(--ink-800);
+  overflow: hidden;
 }
 
 .inner {
   padding-block: var(--space-9);
+  position: relative;
 }
 
 .heading {
   margin: 0 0 var(--space-6);
   font-family: var(--font-display);
-  font-size: var(--text-2xl);
+  font-size: var(--text-display);
   font-weight: 700;
+  letter-spacing: var(--tracking-tighter);
+  color: var(--text-inverse);
 }
 
 .panel {
-  background: var(--surface);
-  border: var(--border-w) solid var(--border-soft);
-  padding: var(--space-7);
+  position: relative;
+  background: var(--ink-900);
+  border: var(--border-w-thick) solid var(--ink-700);
+  padding: var(--space-8) var(--space-7);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-4);
   max-width: 640px;
+  clip-path: polygon(var(--cut-md) 0, 100% 0, 100% 100%, 0 100%, 0 var(--cut-md));
 }
 
 .panelTitle {
   margin: 0;
   font-family: var(--font-display);
-  font-size: var(--text-lg);
-  font-weight: 600;
+  font-size: var(--text-2xl);
+  font-weight: 700;
   letter-spacing: var(--tracking-tight);
+  color: var(--text-inverse);
 }
 
 .panelBody {
   margin: 0;
   font-size: var(--text-base);
-  color: var(--text-muted);
+  color: var(--text-muted-inverse);
   line-height: var(--leading-normal);
+}
+
+.decrypted {
+  color: var(--accent-copper);
+}
+
+.encrypted {
+  color: var(--ink-500);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.stripe {
+  position: absolute;
+  top: -18%;
+  right: -6%;
+  width: min(30vw, 340px);
+  height: min(30vw, 340px);
+  background: transparent;
+  border: var(--border-w) solid var(--ink-700);
+  clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%, 0 40%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 900px) {
+  .stripe {
+    display: none;
+  }
 }
 
 @media (max-width: 640px) {
@@ -46,6 +88,12 @@
   }
 
   .panel {
-    padding: var(--space-5);
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: var(--space-4);
   }
 }

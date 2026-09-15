@@ -1,7 +1,7 @@
 .reveal:not(.stagger) {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 560ms var(--ease), transform 560ms var(--ease);
+  transform: translateY(32px);
+  transition: opacity 720ms var(--ease-out-expo), transform 720ms var(--ease-out-expo);
 }
 
 .reveal:not(.stagger).visible {
@@ -11,8 +11,8 @@
 
 .reveal.stagger > * {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 550ms var(--ease), transform 550ms var(--ease);
+  transform: translateY(28px);
+  transition: opacity 720ms var(--ease-out-expo), transform 720ms var(--ease-out-expo);
 }
 
 .reveal.stagger.visible > * {

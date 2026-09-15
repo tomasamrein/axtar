@@ -1,0 +1,44 @@
+.band {
+  position: relative;
+  background: var(--accent-copper);
+  border-block: var(--border-w-thick) solid var(--ink-950);
+  padding-block: var(--space-4);
+  overflow: hidden;
+  user-select: none;
+}
+
+.parallax {
+  position: relative;
+  overflow: hidden;
+}
+
+.scroller {
+  display: flex;
+  white-space: nowrap;
+}
+
+.word {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tighter);
+  color: var(--ink-950);
+  padding-inline: var(--space-4);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroller {
+    transform: none !important;
+  }
+}

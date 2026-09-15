@@ -32,9 +32,11 @@ export function Button({ children, variant = 'primary', size = 'md', disabled = 
     primary: { background: hover ? 'var(--accent-copper)' : 'var(--ink-950)', color: 'var(--ink-000)', borderColor: 'var(--ink-950)' },
     secondary: { background: hover ? 'var(--ink-950)' : 'var(--ink-000)', color: hover ? 'var(--ink-000)' : 'var(--ink-950)', borderColor: 'var(--ink-950)' },
     ghost: { background: 'transparent', color: 'var(--ink-950)', border: 'none', clipPath: 'none', textDecoration: hover ? 'underline' : 'none', textUnderlineOffset: 4 },
+    inverse: { background: hover ? 'var(--ink-000)' : 'var(--accent-copper)', color: 'var(--ink-950)', borderColor: 'var(--ink-000)' },
   };
 
-  const shadow = variant === 'ghost' ? {} : { boxShadow: active ? '2px 2px 0 0 var(--ink-950)' : hover ? '4px 4px 0 0 var(--ink-950)' : 'var(--shadow-hard-sm)', transform: active ? 'translate(2px,2px)' : hover ? 'translate(0,0)' : 'translate(-4px,-4px)', marginRight: variant === 'ghost' ? 0 : 4, marginBottom: variant === 'ghost' ? 0 : 4 };
+  const shadowColor = variant === 'inverse' ? (hover ? 'var(--accent-copper)' : 'var(--ink-000)') : 'var(--ink-950)';
+  const shadow = variant === 'ghost' ? {} : { boxShadow: active ? `2px 2px 0 0 ${shadowColor}` : hover ? `4px 4px 0 0 ${shadowColor}` : `4px 4px 0 0 ${shadowColor}`, transform: active ? 'translate(2px,2px)' : hover ? 'translate(0,0)' : 'translate(-4px,-4px)', marginRight: variant === 'ghost' ? 0 : 4, marginBottom: variant === 'ghost' ? 0 : 4 };
 
   const style = { ...base, ...variants[variant], ...shadow };
 

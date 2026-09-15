@@ -1,4 +1,5 @@
-import { Reveal } from "@/components/ui/Reveal";
+"use client";
+import { useEffect, useRef, useState } from "react";
 import styles from "./Process.module.css";
 
 const STEPS = [
@@ -24,27 +25,81 @@ const STEPS = [
   },
 ];
 
+const LAST = STEPS.length - 1;
+
 export function Process() {
+  const wrapRef = useRef(null);
+  const [pos, setPos] = useState(0);
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+
+    let frame = null;
+
+    const measure = () => {
+      frame = null;
+      const rect = el.getBoundingClientRect();
+      const travel = rect.height - window.innerHeight;
+      const raw = travel > 0 ? -rect.top / travel : 0;
+      setPos(Math.min(1, Math.max(0, raw)) * LAST);
+    };
+
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(measure);
+    };
+
+    measure();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  const active = Math.round(pos);
+
   return (
-    <section id="proceso" className={styles.section}>
-      <div className={`container ${styles.inner}`}>
-        <Reveal as="div">
-          <h2 className={styles.heading}>Cómo trabajamos</h2>
-          <p className={styles.subheading}>
-            Un proceso claro, de punta a punta, sin sorpresas en el medio.
-          </p>
-        </Reveal>
-        <div className={styles.timelineWrap}>
-          <div className={styles.line} aria-hidden="true" />
-          <Reveal as="div" className={styles.timeline} stagger>
-            {STEPS.map((step, i) => (
-              <div key={step.title} className={styles.step}>
-                <span className={styles.node}>0{i + 1}</span>
-                <h3 className={styles.title}>{step.title}</h3>
-                <p className={styles.description}>{step.description}</p>
-              </div>
-            ))}
-          </Reveal>
+    <section id="proceso" ref={wrapRef} className={styles.section}>
+      <div className={styles.sticky}>
+        <div className={`container ${styles.inner}`}>
+          <div className={styles.top}>
+            <h2 className={styles.heading}>Cómo trabajamos</h2>
+            <p className={styles.counter}>
+              <span className={styles.counterNow}>{String(active + 1).padStart(2, "0")}</span>
+              <span className={styles.counterTotal}>/ {String(STEPS.length).padStart(2, "0")}</span>
+            </p>
+          </div>
+
+          <ol className={styles.stack} style={{ "--pos": pos }}>
+            {STEPS.map((step, i) => {
+              const distance = Math.abs(i - pos);
+              const near = Math.max(0, 1 - distance);
+              return (
+                <li
+                  key={step.title}
+                  className={styles.step}
+                  aria-current={i === active ? "step" : undefined}
+                  style={{
+                    opacity: 0.18 + near * 0.82,
+                    "--near": near,
+                  }}
+                >
+                  <h3 className={styles.title}>{step.title}</h3>
+                  <p className={styles.description} style={{ opacity: Math.max(0, near * 2 - 1) }}>
+                    {step.description}
+                  </p>
+                </li>
+              );
+            })}
+          </ol>
+
+          <div className={styles.rail} aria-hidden="true">
+            <span className={styles.railFill} style={{ scale: `${pos / LAST} 1` }} />
+          </div>
         </div>
       </div>
     </section>

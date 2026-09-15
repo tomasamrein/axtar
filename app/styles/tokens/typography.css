@@ -11,12 +11,15 @@
   --text-3xl: 2.25rem;
   --text-4xl: 3rem;
   --text-5xl: 4.25rem;
+  --text-hero: clamp(2.75rem, 3.4vw + 2.1rem, 6rem);
+  --text-display: clamp(2.25rem, 2.4vw + 1.6rem, 4rem);
 
   --leading-tight: 1.05;
   --leading-snug: 1.25;
   --leading-normal: 1.55;
 
   --tracking-tight: -0.02em;
+  --tracking-tighter: -0.04em;
   --tracking-normal: 0;
   --tracking-wide: 0.09em;
 }

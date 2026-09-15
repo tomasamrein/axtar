@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./Reveal.module.css";
 
-export function Reveal({ children, className = "", as: Tag = "div", stagger = false }) {
+export function Reveal({ children, className = "", as: Tag = "div", stagger = false, ...rest }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -30,7 +30,7 @@ export function Reveal({ children, className = "", as: Tag = "div", stagger = fa
   ].filter(Boolean).join(" ");
 
   return (
-    <Tag ref={ref} className={classes}>
+    <Tag ref={ref} className={classes} {...rest}>
       {children}
     </Tag>
   );

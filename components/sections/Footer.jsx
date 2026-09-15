@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import styles from "./Footer.module.css";
 
@@ -7,7 +6,7 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
         <div className={styles.brand}>
-          <Image src="/logo-mark.png" alt="" width={20} height={20} className={styles.logo} />
+          <span className={styles.logo} role="img" aria-label="" />
           <span className={styles.wordmark}>AXTAR STUDIO</span>
         </div>
         <div className={styles.meta}>

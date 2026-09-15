@@ -6,6 +6,8 @@ const TONES = {
   ink: { background: 'var(--ink-950)', color: 'var(--ink-000)', border: 'var(--ink-950)' },
   outline: { background: 'transparent', color: 'var(--ink-950)', border: 'var(--ink-950)' },
   copper: { background: 'var(--accent-copper-dim)', color: 'var(--ink-950)', border: 'var(--accent-copper)' },
+  copperSolid: { background: 'var(--accent-copper)', color: 'var(--ink-950)', border: 'var(--accent-copper)' },
+  outlineInverse: { background: 'transparent', color: 'var(--ink-000)', border: 'var(--ink-000)' },
 };
 
 export function Badge({ children, tone = 'outline' }) {

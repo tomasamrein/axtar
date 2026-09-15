@@ -6,19 +6,41 @@
 
 .word {
   display: inline-block;
+  position: relative;
   font-style: italic;
   color: var(--accent-copper);
-  animation: word-in 480ms var(--ease) both;
+  animation: word-in 620ms var(--ease-out-expo) both;
   white-space: nowrap;
+}
+
+.word::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.06em;
+  height: 0.06em;
+  background: var(--accent-copper);
+  transform-origin: left;
+  animation: underline-draw 620ms 120ms var(--ease-out-expo) both;
 }
 
 @keyframes word-in {
   from {
     opacity: 0;
-    transform: translateY(0.22em);
+    transform: translateY(0.4em) scale(0.9);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes underline-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }

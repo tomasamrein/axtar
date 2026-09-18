@@ -1,0 +1,17 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1440, "h": 900, "title": "Ledesma & Asociados — estudio contable" },
+    { "file": "Veterinaria.dc.html", "x": 1560, "y": 0, "w": 1440, "h": 900, "title": "Huella Norte — veterinaria" },
+    { "file": "Tienda.dc.html", "x": 3120, "y": 0, "w": 1440, "h": 900, "title": "Café Raíz — e-commerce" }
+  ],
+  "annotations": [
+    {
+      "id": "uso",
+      "x": 0,
+      "y": -210,
+      "w": 700,
+      "text": "Mockups de muestra para Axtar Studio.\nCada uno con identidad propia: paleta, tipografía y tono según el rubro — no siguen el sistema visual de Axtar.\nFotos de Unsplash (licencia libre, uso comercial permitido). Negocios ficticios: sin precios, direcciones ni teléfonos inventados."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}

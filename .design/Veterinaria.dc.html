@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Karla:wght@400;500;600;700&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Karla', system-ui, sans-serif; }
+    a { color: #C2603C; text-decoration: none; }
+    a:hover { color: #A44D2D; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; height: 900px; overflow: hidden; position: relative; background: #1F2E24;">
+
+  <img src="./foto-vet.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% center;">
+  <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(31,46,36,0.95) 0%, rgba(31,46,36,0.86) 38%, rgba(31,46,36,0.34) 70%, rgba(31,46,36,0.58) 100%);"></div>
+
+  <div style="position: relative; display: flex; flex-direction: column; height: 900px;">
+
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 24px 72px;">
+      <div style="display: flex; align-items: center; gap: 13px;">
+        <div style="width: 42px; height: 42px; border-radius: 50%; background: #E8E2D2; display: flex; align-items: center; justify-content: center;">
+          <svg width="23" height="23" viewBox="0 0 30 30" fill="#1F2E24" aria-hidden="true">
+            <ellipse cx="15" cy="19.5" rx="7.6" ry="6.2"/>
+            <ellipse cx="7.4" cy="10.6" rx="3" ry="4"/>
+            <ellipse cx="14.2" cy="7.6" rx="3" ry="4.2"/>
+            <ellipse cx="21.4" cy="9.6" rx="3" ry="4"/>
+          </svg>
+        </div>
+        <span style="font-family: 'Young Serif', Georgia, serif; font-size: 22px; color: #F4F1E8; letter-spacing: -0.01em;">Huella Norte</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 34px; font-size: 15.5px; font-weight: 500; color: rgba(244,241,232,0.8);">
+        <span>Atención</span>
+        <span>Vacunación</span>
+        <span>Cirugía</span>
+        <span>Peluquería</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 22px;">
+        <span style="font-size: 15px; font-weight: 600; color: #E8B87A;">Urgencias las 24 h</span>
+        <div style="background: #C2603C; color: #FFF8EF; font-weight: 700; font-size: 15px; padding: 13px 26px; border-radius: 999px;">Sacar turno</div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; justify-content: center; gap: 28px; padding: 0 72px; flex-grow: 1; max-width: 760px;">
+
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px; background: rgba(244,241,232,0.13); border: 1px solid rgba(244,241,232,0.2); border-radius: 999px; padding: 8px 16px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E8B87A" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7 V12 L15.5 14"/></svg>
+          <span style="font-size: 13.5px; font-weight: 600; color: #F4F1E8;">Abierto ahora</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; background: rgba(244,241,232,0.13); border: 1px solid rgba(244,241,232,0.2); border-radius: 999px; padding: 8px 16px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E8B87A" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21 C12 21 4.5 15.4 4.5 10 A7.5 7.5 0 0 1 19.5 10 C19.5 15.4 12 21 12 21 Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <span style="font-size: 13.5px; font-weight: 600; color: #F4F1E8;">Zona norte de la ciudad</span>
+        </div>
+      </div>
+
+      <h1 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 66px; line-height: 1.05; letter-spacing: -0.02em; color: #F4F1E8; text-wrap: pretty;">
+        Cuidamos a los que no pueden decirte <span style="color: #E8B87A;">dónde les duele.</span>
+      </h1>
+
+      <p style="margin: 0; font-size: 20px; line-height: 1.6; color: rgba(244,241,232,0.76); max-width: 48ch;">
+        Clínica veterinaria con atención general, vacunación, cirugía y guardia de urgencias los siete días. Te explicamos cada paso antes de hacerlo.
+      </p>
+
+      <div style="display: flex; align-items: center; gap: 16px; margin-top: 8px;">
+        <div style="display: flex; align-items: center; gap: 11px; background: #C2603C; color: #FFF8EF; font-weight: 700; font-size: 17px; padding: 18px 34px; border-radius: 999px; box-shadow: 0 16px 38px rgba(194,96,60,0.35);">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFF8EF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10 H20.5"/><path d="M8 3 V6.5"/><path d="M16 3 V6.5"/></svg>
+          <span>Sacar turno online</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 11px; border: 1.5px solid rgba(244,241,232,0.38); color: #F4F1E8; font-weight: 600; font-size: 17px; padding: 17px 32px; border-radius: 999px;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#F4F1E8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21 C12 21 4.5 15.4 4.5 10 A7.5 7.5 0 0 1 19.5 10 C19.5 15.4 12 21 12 21 Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <span>Cómo llegar</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="background: rgba(244,241,232,0.96); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));">
+      <div style="padding: 26px 24px 26px 72px; display: flex; align-items: center; gap: 14px;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C2603C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M20.5 8.6 C20.5 5.7 18.3 3.5 15.6 3.5 C13.9 3.5 12.6 4.4 12 5.5 C11.4 4.4 10.1 3.5 8.4 3.5 C5.7 3.5 3.5 5.7 3.5 8.6 C3.5 14 12 20.5 12 20.5 C12 20.5 20.5 14 20.5 8.6 Z"/></svg>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-family: 'Young Serif', Georgia, serif; font-size: 17px; color: #1F2E24;">Consulta general</span>
+          <span style="font-size: 13.5px; color: #5C6B5F;">Control y diagnóstico</span>
+        </div>
+      </div>
+      <div style="padding: 26px 24px; display: flex; align-items: center; gap: 14px; border-left: 1px solid rgba(31,46,36,0.1);">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C2603C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M14.5 3.5 L20.5 9.5"/><path d="M17.5 6.5 L8.5 15.5 L5 19 L3.5 20.5"/><path d="M11 9 L15 13"/></svg>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-family: 'Young Serif', Georgia, serif; font-size: 17px; color: #1F2E24;">Vacunación</span>
+          <span style="font-size: 13.5px; color: #5C6B5F;">Plan con recordatorios</span>
+        </div>
+      </div>
+      <div style="padding: 26px 24px; display: flex; align-items: center; gap: 14px; border-left: 1px solid rgba(31,46,36,0.1);">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C2603C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M12 4 V20"/><path d="M4 12 H20"/><rect x="3.5" y="3.5" width="17" height="17" rx="4"/></svg>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-family: 'Young Serif', Georgia, serif; font-size: 17px; color: #1F2E24;">Cirugía</span>
+          <span style="font-size: 13.5px; color: #5C6B5F;">Quirófano propio</span>
+        </div>
+      </div>
+      <div style="padding: 26px 72px 26px 24px; display: flex; align-items: center; gap: 14px; border-left: 1px solid rgba(31,46,36,0.1);">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C2603C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M6 4.5 L6 13"/><path d="M6 13 A3 3 0 1 0 6 19 A3 3 0 1 0 6 13"/><path d="M18 4.5 L18 13"/><path d="M18 13 A3 3 0 1 0 18 19 A3 3 0 1 0 18 13"/><path d="M6 8 L18 8"/></svg>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-family: 'Young Serif', Georgia, serif; font-size: 17px; color: #1F2E24;">Peluquería</span>
+          <span style="font-size: 13.5px; color: #5C6B5F;">Baño y corte</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

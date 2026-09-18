@@ -1,0 +1,50 @@
+.dot,
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  will-change: transform;
+  transition: opacity 200ms;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--accent-copper);
+  border-radius: 50%;
+}
+
+/* The ring only carries position (set inline by JS). Its visible circle lives
+   on ::before so the hover state can scale on the GPU without touching layout
+   or fighting the inline transform. */
+.ring::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  border: 1.5px solid var(--accent-copper);
+  border-radius: 50%;
+  will-change: transform;
+  transition:
+    transform 220ms var(--ease-out-expo),
+    border-color 200ms;
+}
+
+.ring.hover::before {
+  transform: scale(1.55);
+  border-color: var(--ink-000);
+}
+
+@media (pointer: coarse) {
+  .dot,
+  .ring {
+    display: none;
+  }
+}

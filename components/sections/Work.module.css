@@ -1,6 +1,6 @@
 .section {
   background: var(--ink-950);
-  color: var(--text-inverse);
+  color: oklch(98% 0.003 55);
   border-top: var(--border-w) solid var(--ink-800);
   overflow: hidden;
 }
@@ -16,7 +16,7 @@
   font-size: var(--text-display);
   font-weight: 700;
   letter-spacing: var(--tracking-tighter);
-  color: var(--text-inverse);
+  color: oklch(98% 0.003 55);
 }
 
 .panel {
@@ -38,13 +38,13 @@
   font-size: var(--text-2xl);
   font-weight: 700;
   letter-spacing: var(--tracking-tight);
-  color: var(--text-inverse);
+  color: var(--ink-000);
 }
 
 .panelBody {
   margin: 0;
   font-size: var(--text-base);
-  color: var(--text-muted-inverse);
+  color: var(--ink-300);
   line-height: var(--leading-normal);
 }
 
@@ -61,25 +61,6 @@
   align-items: center;
   gap: var(--space-5);
   flex-wrap: wrap;
-}
-
-.stripe {
-  position: absolute;
-  top: -18%;
-  right: -6%;
-  width: min(30vw, 340px);
-  height: min(30vw, 340px);
-  background: transparent;
-  border: var(--border-w) solid var(--ink-700);
-  clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%, 0 40%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-@media (max-width: 900px) {
-  .stripe {
-    display: none;
-  }
 }
 
 @media (max-width: 640px) {

@@ -1,44 +1,86 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const SIZES = {
-  md: { padY: 14, padX: 24, font: 'var(--text-base)' },
-  sm: { padY: 10, padX: 18, font: 'var(--text-sm)' },
+  md: { padY: 14, padX: 26, font: "var(--text-base)" },
+  sm: { padY: 10, padX: 20, font: "var(--text-sm)" },
 };
 
-export function Button({ children, variant = 'primary', size = 'md', disabled = false, icon = null, onClick, type = 'button', href, target, rel }) {
+const BASE = {
+  fontFamily: "var(--font-display)",
+  fontWeight: 600,
+  letterSpacing: "var(--tracking-tight)",
+  border: "1.5px solid transparent",
+  display: "inline-flex",
+  alignItems: "center",
+  gap: 10,
+  textDecoration: "none",
+  borderRadius: "9999px",
+  cursor: "none",
+  transition:
+    "background 180ms, color 180ms, border-color 180ms, transform 140ms cubic-bezier(0.16,1,0.3,1), box-shadow 180ms",
+};
+
+export function Button({
+  children,
+  variant = "primary",
+  size = "md",
+  disabled = false,
+  icon = null,
+  onClick,
+  type = "button",
+  href,
+  target,
+  rel,
+}) {
   const [hover, setHover] = useState(false);
   const [active, setActive] = useState(false);
   const s = SIZES[size] || SIZES.md;
 
-  const base = {
-    fontFamily: 'var(--font-display)',
-    fontWeight: 600,
-    fontSize: s.font,
-    letterSpacing: 'var(--tracking-tight)',
-    padding: `${s.padY}px ${s.padX}px`,
-    border: 'var(--border-w-thick) solid var(--ink-950)',
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: 10,
-    cursor: disabled ? 'not-allowed' : 'pointer',
-    opacity: disabled ? 0.4 : 1,
-    textDecoration: 'none',
-    transition: 'transform var(--duration-fast) var(--ease), box-shadow var(--duration-fast) var(--ease), background var(--duration) var(--ease)',
-    clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - var(--cut-sm)), calc(100% - var(--cut-sm)) 100%, 0 100%)',
-  };
+  const padding = { padding: `${s.padY}px ${s.padX}px`, fontSize: s.font };
+  const opacity = { opacity: disabled ? 0.4 : 1 };
 
   const variants = {
-    primary: { background: hover ? 'var(--accent-copper)' : 'var(--ink-950)', color: 'var(--ink-000)', borderColor: 'var(--ink-950)' },
-    secondary: { background: hover ? 'var(--ink-950)' : 'var(--ink-000)', color: hover ? 'var(--ink-000)' : 'var(--ink-950)', borderColor: 'var(--ink-950)' },
-    ghost: { background: 'transparent', color: 'var(--ink-950)', border: 'none', clipPath: 'none', textDecoration: hover ? 'underline' : 'none', textUnderlineOffset: 4 },
-    inverse: { background: hover ? 'var(--ink-000)' : 'var(--accent-copper)', color: 'var(--ink-950)', borderColor: 'var(--ink-000)' },
+    primary: {
+      background: hover ? "var(--accent-copper-hover)" : "var(--accent-copper)",
+      color: "var(--ink-950)",
+      borderColor: "var(--accent-copper)",
+      boxShadow: hover ? "0 0 24px 3px oklch(64% 0.15 45 / 0.35)" : "none",
+      transform: active ? "scale(0.97)" : hover ? "scale(1.04)" : "scale(1)",
+    },
+    dark: {
+      background: hover ? "oklch(20% 0.007 55)" : "var(--ink-950)",
+      color: "var(--ink-000)",
+      borderColor: "var(--ink-950)",
+      transform: active ? "scale(0.97)" : hover ? "scale(1.04)" : "scale(1)",
+    },
+    secondary: {
+      background: "transparent",
+      color: hover ? "var(--accent-copper)" : "var(--ink-000)",
+      borderColor: hover ? "var(--accent-copper)" : "oklch(38% 0.006 55)",
+      transform: active ? "scale(0.97)" : hover ? "scale(1.03)" : "scale(1)",
+    },
+    ghost: {
+      background: "transparent",
+      color: hover ? "var(--accent-copper)" : "var(--ink-300)",
+      border: "none",
+      textDecoration: hover ? "underline" : "none",
+      textUnderlineOffset: "4px",
+    },
+    inverse: {
+      background: hover ? "var(--ink-000)" : "var(--accent-copper)",
+      color: "var(--ink-950)",
+      borderColor: hover ? "var(--ink-000)" : "var(--accent-copper)",
+      transform: active ? "scale(0.97)" : hover ? "scale(1.04)" : "scale(1)",
+    },
   };
 
-  const shadowColor = variant === 'inverse' ? (hover ? 'var(--accent-copper)' : 'var(--ink-000)') : 'var(--ink-950)';
-  const shadow = variant === 'ghost' ? {} : { boxShadow: active ? `2px 2px 0 0 ${shadowColor}` : hover ? `4px 4px 0 0 ${shadowColor}` : `4px 4px 0 0 ${shadowColor}`, transform: active ? 'translate(2px,2px)' : hover ? 'translate(0,0)' : 'translate(-4px,-4px)', marginRight: variant === 'ghost' ? 0 : 4, marginBottom: variant === 'ghost' ? 0 : 4 };
-
-  const style = { ...base, ...variants[variant], ...shadow };
+  const style = {
+    ...BASE,
+    ...padding,
+    ...opacity,
+    ...(variants[variant] || variants.primary),
+  };
 
   const handlers = {
     onMouseEnter: () => setHover(true),
@@ -57,13 +99,7 @@ export function Button({ children, variant = 'primary', size = 'md', disabled = 
   }
 
   return (
-    <button
-      type={type}
-      disabled={disabled}
-      onClick={onClick}
-      style={style}
-      {...handlers}
-    >
+    <button type={type} disabled={disabled} onClick={onClick} style={style} {...handlers}>
       {icon}
       {children}
     </button>

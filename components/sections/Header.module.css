@@ -1,7 +1,8 @@
 .header {
-  --header-h: 90px;
-  border-bottom: var(--border-w) solid var(--ink-950);
-  background: var(--surface);
+  background: oklch(15% 0.008 55 / 0.88);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom: 1px solid var(--ink-800);
   position: sticky;
   top: 0;
   z-index: 50;
@@ -20,21 +21,22 @@
   align-items: center;
   gap: var(--space-3);
   text-decoration: none;
-  color: var(--text);
+  color: var(--ink-000);
   z-index: 2;
 }
 
 .logo {
-  height: 56px;
+  height: 40px;
   width: auto;
 }
 
 .wordmark {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: var(--text-3xl);
+  font-size: var(--text-lg);
   letter-spacing: var(--tracking-tight);
   white-space: nowrap;
+  color: var(--ink-000);
 }
 
 .nav {
@@ -48,21 +50,43 @@
 
 .nav a {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
   text-decoration: none;
-  color: var(--text);
-  border-bottom: 1.5px solid transparent;
-  transition: border-color var(--duration-fast) var(--ease), color var(--duration-fast) var(--ease);
+  color: var(--ink-500);
+  transition: color 160ms;
 }
 
 .nav a:hover {
-  color: var(--accent-copper);
-  border-color: var(--accent-copper);
+  color: var(--ink-000);
 }
 
 .actionsDesktop {
   display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.ctaLink {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-tight);
+  text-decoration: none;
+  color: var(--ink-000);
+  background: var(--accent-copper);
+  border-radius: 9999px;
+  padding: 10px 22px;
+  transition: transform 140ms var(--ease-out-expo), box-shadow 180ms;
+}
+
+.ctaLink:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 22px 3px oklch(64% 0.15 45 / 0.35);
 }
 
 .toggle {
@@ -74,7 +98,7 @@
   padding: 0;
   background: transparent;
   border: none;
-  cursor: pointer;
+  cursor: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -84,21 +108,22 @@
 .toggle span {
   display: block;
   width: 24px;
-  height: 2px;
-  background: var(--ink-950);
+  height: 1.5px;
+  background: var(--ink-000);
   transition: transform var(--duration) var(--ease-out-expo), opacity var(--duration) var(--ease-out-expo);
 }
 
 .toggleOpen span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(7.5px) rotate(45deg);
 }
 
 .toggleOpen span:nth-child(2) {
   opacity: 0;
+  transform: scaleX(0);
 }
 
 .toggleOpen span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-7.5px) rotate(-45deg);
 }
 
 .mobileNav {
@@ -112,24 +137,12 @@
 }
 
 @media (max-width: 640px) {
-  .header {
-    --header-h: 70px;
-  }
-
   .actionsDesktop {
     display: none;
   }
 
   .toggle {
     display: flex;
-  }
-
-  .logo {
-    height: 36px;
-  }
-
-  .wordmark {
-    font-size: var(--text-lg);
   }
 
   .mobileNav {
@@ -139,14 +152,17 @@
     gap: var(--space-7);
     position: fixed;
     inset: 0;
-    top: var(--header-h);
+    top: 70px;
     background: var(--ink-950);
     padding: var(--space-7) var(--space-5);
-    transform: translateY(-12px);
+    transform: translateY(-10px);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity var(--duration-slow) var(--ease-out-expo), transform var(--duration-slow) var(--ease-out-expo), visibility 0s linear var(--duration-slow);
+    transition:
+      opacity var(--duration-slow) var(--ease-out-expo),
+      transform var(--duration-slow) var(--ease-out-expo),
+      visibility 0s linear var(--duration-slow);
   }
 
   .mobileNavOpen {
@@ -154,7 +170,10 @@
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transition: opacity var(--duration-slow) var(--ease-out-expo), transform var(--duration-slow) var(--ease-out-expo), visibility 0s linear 0s;
+    transition:
+      opacity var(--duration-slow) var(--ease-out-expo),
+      transform var(--duration-slow) var(--ease-out-expo),
+      visibility 0s linear 0s;
   }
 
   .mobileNav nav {
@@ -167,12 +186,14 @@
     font-family: var(--font-display);
     font-weight: 700;
     font-size: var(--text-3xl);
-    letter-spacing: var(--tracking-tight);
-    color: var(--text-inverse);
+    letter-spacing: var(--tracking-tighter);
+    color: var(--ink-000);
     text-decoration: none;
     opacity: 0;
     transform: translateY(14px);
-    transition: opacity var(--duration-slow) var(--ease-out-expo), transform var(--duration-slow) var(--ease-out-expo);
+    transition:
+      opacity var(--duration-slow) var(--ease-out-expo),
+      transform var(--duration-slow) var(--ease-out-expo);
   }
 
   .mobileNavOpen nav a {
@@ -180,8 +201,8 @@
     transform: translateY(0);
   }
 
-  .mobileNav :global(a),
-  .mobileNav :global(button) {
+  .mobileNav :global(a.ctaLink) {
     align-self: flex-start;
+    margin-top: var(--space-4);
   }
 }

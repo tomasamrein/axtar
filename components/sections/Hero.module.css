@@ -1,37 +1,68 @@
 .hero {
   position: relative;
-  background: var(--ink-000);
+  background: var(--ink-950);
   overflow: hidden;
-  --mx: 0;
-  --my: 0;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.lines {
+.mesh {
   position: absolute;
-  top: 50%;
-  right: -14%;
-  translate: 0 -50%;
+  inset: 0;
   z-index: 0;
-  opacity: 0.32;
   pointer-events: none;
-  mask-image: radial-gradient(closest-side, #000 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(closest-side, #000 30%, transparent 100%);
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 40%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(120% 90% at 50% 40%, #000 55%, transparent 100%);
 }
 
 .inner {
   position: relative;
   z-index: 1;
-  padding-block: var(--space-9) var(--space-8);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
-  align-items: center;
-  gap: var(--space-8);
+  padding-block: var(--space-9);
 }
 
+/* ── Text column ── */
 .text {
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-500);
+  white-space: nowrap;
+}
+
+.metaDot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-copper);
+  animation: pulse 2.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
 }
 
 .headline {
@@ -40,24 +71,35 @@
   flex-direction: column;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: var(--text-hero);
+  font-size: clamp(3rem, 6vw + 1rem, 7rem);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tighter);
 }
 
-.headlineStatic {
-  max-width: 14ch;
+.headline {
+  max-width: 15ch;
 }
 
-.headlineRotor {
+.bright {
+  color: var(--ink-000);
   display: block;
+}
+
+.dim {
+  display: block;
+  color: var(--ink-700);
+  margin-top: 0.08em;
+}
+
+.rotor {
   color: var(--accent-copper);
+  display: inline-block;
 }
 
 .subhead {
   margin: 0;
   font-size: var(--text-xl);
-  color: var(--text-muted);
+  color: var(--ink-500);
   max-width: 52ch;
   line-height: var(--leading-normal);
 }
@@ -65,89 +107,30 @@
 .actions {
   display: flex;
   align-items: center;
-  gap: var(--space-5);
-  margin-top: var(--space-2);
+  gap: var(--space-4);
+  flex-wrap: wrap;
 }
 
-.showcase {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: var(--space-3);
+.magnet {
+  display: inline-flex;
 }
 
-.frame {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1440 / 900;
-  border: var(--border-w-thick) solid var(--ink-950);
-  box-shadow: 14px 14px 0 0 var(--accent-copper);
-  background: var(--ink-000);
-  overflow: hidden;
-  transform: translate3d(calc(var(--mx) * -18px), calc(var(--my) * -14px), 0);
-  transition: transform 160ms linear, box-shadow var(--duration) var(--ease-out-expo);
-}
-
-.shot {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity 620ms var(--ease-out-expo);
-}
-
-.frame:hover {
-  box-shadow: 20px 20px 0 0 var(--accent-copper);
-}
-
-.frameNote {
-  margin: 0;
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--text-muted);
-  font-variant-numeric: tabular-nums;
-}
-
-@media (max-width: 1024px) {
-  .inner {
-    grid-template-columns: 1fr;
-    gap: var(--space-7);
-  }
-
-  .showcase {
-    align-items: flex-start;
-    max-width: 560px;
-  }
-
-  .headlineStatic {
-    max-width: none;
-  }
-
-  .lines {
-    display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .frame {
-    transform: none;
-  }
-}
-
+/* ── Responsive ── */
 @media (max-width: 640px) {
+  .hero {
+    min-height: auto;
+  }
+
   .inner {
-    padding-block: var(--space-7) var(--space-6);
-    gap: var(--space-6);
+    padding-block: var(--space-8) var(--space-7);
   }
 
   .text {
-    gap: var(--space-5);
+    max-width: none;
   }
 
   .headline {
-    font-size: clamp(2.25rem, 8vw + 1rem, 3rem);
+    font-size: clamp(2.6rem, 11vw, 3.6rem);
   }
 
   .subhead {
@@ -166,10 +149,7 @@
 
   .actions a,
   .actions button {
+    width: 100%;
     justify-content: center;
-  }
-
-  .frame {
-    box-shadow: 8px 8px 0 0 var(--accent-copper);
   }
 }

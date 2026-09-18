@@ -108,8 +108,15 @@ section[id] {
 }
 
 html {
-  scrollbar-color: var(--accent-copper) var(--ink-100);
+  scrollbar-color: var(--accent-copper) var(--ink-800);
   scrollbar-width: thin;
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  html {
+    cursor: auto;
+  }
 }
 
 .container {

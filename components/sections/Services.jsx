@@ -1,83 +1,115 @@
 "use client";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/shadcn/tabs";
-import { Button } from "@/components/ui/Button";
-import { ServiceSchematic } from "@/components/ui/ServiceSchematic";
+import { useState } from "react";
+import Magnet from "@/components/reactbits/Magnet";
+import { SpotlightButton } from "@/components/ui/SpotlightButton";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import styles from "./Services.module.css";
 
 const SERVICES = [
   {
     id: "custom",
+    num: "01",
     title: "Desarrollo a medida",
-    description:
-      "Productos y plataformas construidos desde cero, con arquitectura pensada para crecer con tu negocio.",
+    tags: ["SISTEMAS", "PLATAFORMAS", "APIS", "BACKEND", "FRONTEND"],
+    description: "Productos y plataformas construidos desde cero, con arquitectura pensada para crecer con tu negocio. Sin atajos.",
     price: "Desde $900.000 ARS",
   },
   {
     id: "web",
+    num: "02",
     title: "Sitios web",
-    description: "Presencia digital profesional para tu negocio o marca personal, lista en semanas, no meses.",
+    tags: ["INSTITUCIONAL", "LANDING", "PORTFOLIO", "SEO"],
+    description: "Presencia digital profesional lista en semanas, no meses. Diseño propio, sin templates de cuarta.",
     price: "Desde $450.000 ARS",
   },
   {
     id: "commerce",
+    num: "03",
     title: "E-commerce",
-    description: "Tiendas online rápidas y seguras, listas para vender desde el primer día.",
+    tags: ["TIENDA ONLINE", "PAGOS", "ENVÍOS", "MERCADO LIBRE"],
+    description: "Tiendas rápidas y seguras, listas para vender desde el primer día. Integración con tus plataformas.",
     price: "Cotización a medida",
   },
   {
     id: "automation",
+    num: "04",
     title: "Automatizaciones",
-    description: "Flujos a medida que eliminan tareas manuales repetitivas y conectan tus herramientas.",
+    tags: ["N8N", "MAKE", "WHATSAPP", "IA", "INTEGRACIONES"],
+    description: "Flujos a medida que eliminan tareas repetitivas y conectan tus herramientas sin que tengas que tocar nada.",
     price: "Cotización a medida",
   },
   {
     id: "audit",
-    title: "Auditoría y consultoría técnica",
-    description: "Diagnóstico honesto de tu stack o proyecto actual, con un plan de acción concreto.",
+    num: "05",
+    title: "Auditoría técnica",
+    tags: ["DIAGNÓSTICO", "CONSULTORÍA", "PLAN DE ACCIÓN"],
+    description: "Diagnóstico honesto de tu stack o proyecto actual, con un plan concreto para saber qué hacer y en qué orden.",
     price: "Desde $250.000 ARS",
   },
 ];
 
 export function Services() {
+  const [hovered, setHovered] = useState(null);
+
   return (
     <section id="servicios" className={styles.section}>
       <div className={`container ${styles.inner}`}>
-        <h2 className={styles.heading}>Lo que hacemos</h2>
+        <div className={styles.header}>
+          <p className={styles.kicker}>02 — Qué hacemos</p>
+          <h2 className={styles.heading}>
+            Cinco formas de construir<br />tu presencia digital
+          </h2>
+        </div>
 
-        <Tabs defaultValue="custom" orientation="vertical" className={styles.tabs}>
-          <TabsList variant="line" className={styles.list}>
-            {SERVICES.map((service) => (
-              <TabsTrigger key={service.id} value={service.id} className={styles.trigger}>
-                <span className={styles.triggerTitle}>{service.title}</span>
-                <span className={styles.triggerPrice}>{service.price}</span>
-              </TabsTrigger>
-            ))}
-          </TabsList>
+        <ul className={styles.list} role="list">
+          {SERVICES.map((s) => (
+            <li
+              key={s.id}
+              className={`${styles.row} ${hovered === s.id ? styles.rowActive : ""} ${hovered && hovered !== s.id ? styles.rowDim : ""}`}
+              onMouseEnter={() => setHovered(s.id)}
+              onMouseLeave={() => setHovered(null)}
+            >
+              <span className={styles.num} aria-hidden="true">{s.num}</span>
 
-          {SERVICES.map((service) => (
-            <TabsContent key={service.id} value={service.id} className={styles.panel}>
-              <div className={styles.panelText}>
-                <h3 className={styles.panelTitle}>{service.title}</h3>
-                <p className={styles.panelDescription}>{service.description}</p>
-                <p className={styles.panelPrice}>{service.price}</p>
-                <Button
-                  variant="inverse"
-                  href={getWhatsAppUrl(
-                    `Hola Tomás, vi la web de Axtar Studio y me interesa el servicio de ${service.title.toLowerCase()}.`
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Consultar por este servicio
-                </Button>
+              <div className={styles.left}>
+                <h3 className={styles.title}>{s.title}</h3>
+                <p className={styles.tags}>{s.tags.join(" · ")}</p>
               </div>
-              <div className={styles.panelArt}>
-                <ServiceSchematic variant={service.id} />
+
+              <div className={styles.right}>
+                <p className={styles.description}>{s.description}</p>
+                <p className={styles.price}>{s.price}</p>
               </div>
-            </TabsContent>
+
+              <a
+                className={styles.rowCta}
+                href={getWhatsAppUrl(
+                  `Hola Tomás, vi Axtar Studio y me interesa el servicio de ${s.title.toLowerCase()}.`
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                tabIndex={hovered === s.id ? 0 : -1}
+                aria-label={`Consultar sobre ${s.title}`}
+              >
+                Consultar →
+              </a>
+            </li>
           ))}
-        </Tabs>
+        </ul>
+
+        <div className={styles.footer}>
+          <Magnet padding={60} magnetStrength={4}>
+            <SpotlightButton
+              href={getWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="primary"
+            >
+              Hablemos por WhatsApp
+            </SpotlightButton>
+          </Magnet>
+          <p className={styles.footerNote}>Respuesta en menos de 24 horas</p>
+        </div>
       </div>
     </section>
   );

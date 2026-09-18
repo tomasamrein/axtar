@@ -11,7 +11,7 @@ export function ClosingCta() {
         <p className={styles.body}>
           Contame en qué estás pensando y te respondo directamente, sin formularios ni intermediarios.
         </p>
-        <Button href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
+        <Button href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" variant="dark">
           Empecemos por WhatsApp
         </Button>
       </Reveal>

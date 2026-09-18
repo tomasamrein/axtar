@@ -9,7 +9,6 @@ export function Work() {
   return (
     <section id="casos" className={styles.section}>
       <div className={`container ${styles.inner}`}>
-        <span className={styles.stripe} aria-hidden="true" />
         <h2 className={styles.heading}>Casos de éxito</h2>
         <Reveal as="div" className={styles.panel}>
           <p className={styles.panelTitle}>

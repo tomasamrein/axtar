@@ -1,4 +1,6 @@
 import { Space_Grotesk, Manrope } from "next/font/google";
+import { Toaster } from "sonner";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 import "./styles/globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -45,7 +47,22 @@ export default function RootLayout({ children }) {
       lang="es"
       className={`${spaceGrotesk.variable} ${manrope.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <CustomCursor />
+        {children}
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            style: {
+              background: "oklch(20% 0.007 55)",
+              color: "oklch(98% 0.003 55)",
+              border: "1.5px solid oklch(38% 0.006 55)",
+              borderRadius: "8px",
+              fontFamily: "var(--font-manrope), sans-serif",
+            },
+          }}
+        />
+      </body>
     </html>
   );
 }

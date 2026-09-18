@@ -1,6 +1,5 @@
 import { Header } from "@/components/sections/Header";
 import { Hero } from "@/components/sections/Hero";
-import { ScrollBlackout } from "@/components/ui/ScrollBlackout";
 import { KineticBand } from "@/components/ui/KineticBand";
 import { Services } from "@/components/sections/Services";
 import { Process } from "@/components/sections/Process";
@@ -17,7 +16,6 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <ScrollBlackout />
         <Services />
         <KineticBand
           texts={[

@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/Button";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import styles from "./Header.module.css";
 
@@ -18,18 +17,24 @@ export function Header() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [open]);
 
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
         <a href="#top" className={styles.brand} onClick={() => setOpen(false)}>
-          <Image src="/logo-mark.png" alt="" width={56} height={56} className={styles.logo} priority />
+          <Image
+            src="/logo-mark.png"
+            alt=""
+            width={40}
+            height={40}
+            className={styles.logo}
+            priority
+          />
           <span className={styles.wordmark}>AXTAR STUDIO</span>
         </a>
+
         <nav className={styles.nav} aria-label="Principal">
           {NAV_LINKS.map((link) => (
             <a key={link.href} href={link.href}>
@@ -37,11 +42,18 @@ export function Header() {
             </a>
           ))}
         </nav>
+
         <div className={styles.actionsDesktop}>
-          <Button size="sm" href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
+          <a
+            className={styles.ctaLink}
+            href={getWhatsAppUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Hablemos
-          </Button>
+          </a>
         </div>
+
         <button
           type="button"
           className={`${styles.toggle} ${open ? styles.toggleOpen : ""}`}
@@ -56,7 +68,10 @@ export function Header() {
         </button>
       </div>
 
-      <div id="mobile-nav" className={`${styles.mobileNav} ${open ? styles.mobileNavOpen : ""}`}>
+      <div
+        id="mobile-nav"
+        className={`${styles.mobileNav} ${open ? styles.mobileNavOpen : ""}`}
+      >
         <nav aria-label="Principal, móvil">
           {NAV_LINKS.map((link, i) => (
             <a
@@ -69,9 +84,15 @@ export function Header() {
             </a>
           ))}
         </nav>
-        <Button variant="inverse" href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+        <a
+          className={styles.ctaLink}
+          href={getWhatsAppUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => setOpen(false)}
+        >
           Hablemos por WhatsApp
-        </Button>
+        </a>
       </div>
     </header>
   );

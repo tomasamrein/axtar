@@ -1,8 +1,17 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import styles from "./Samples.module.css";
 
 const SAMPLES = [
+  {
+    slug: "navaja-style",
+    href: "/muestras/navaja-style",
+    title: "Navaja Style",
+    kind: "Barbería",
+    description: "Reserva de turnos en vivo, precios sin sorpresas y una galería de trabajos que vende el oficio a primera vista.",
+    live: true,
+  },
   {
     slug: "veterinaria",
     src: "/muestras/veterinaria.jpg",
@@ -39,17 +48,33 @@ export function Samples() {
           {SAMPLES.map((sample) => (
             <li key={sample.slug} className={styles.item}>
               <div className={styles.frame}>
-                <Image
-                  src={sample.src}
-                  alt={`Landing de muestra para ${sample.title}, ${sample.kind.toLowerCase()}`}
-                  width={1440}
-                  height={900}
-                  sizes="(max-width: 900px) 92vw, 33vw"
-                  className={styles.shot}
-                />
+                {sample.live ? (
+                  <Link
+                    href={sample.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.livePreview}
+                    aria-label={`Abrir demo en vivo de ${sample.title}`}
+                  >
+                    <span className={styles.liveWordmark}>Navaja Style</span>
+                    <span className={styles.liveStripe}>
+                      Fade · Navaja · Barba · Turno reservado · Fade · Navaja · Barba · Turno reservado
+                    </span>
+                    <span className={styles.liveCta}>Ver demo en vivo ↗</span>
+                  </Link>
+                ) : (
+                  <Image
+                    src={sample.src}
+                    alt={`Landing de muestra para ${sample.title}, ${sample.kind.toLowerCase()}`}
+                    width={1440}
+                    height={900}
+                    sizes="(max-width: 900px) 92vw, 33vw"
+                    className={styles.shot}
+                  />
+                )}
               </div>
               <div className={styles.meta}>
-                <span className={styles.tag}>Demo</span>
+                <span className={styles.tag}>{sample.live ? "Demo en vivo" : "Demo"}</span>
                 <h3 className={styles.title}>{sample.title}</h3>
                 <p className={styles.kind}>{sample.kind}</p>
                 <p className={styles.description}>{sample.description}</p>

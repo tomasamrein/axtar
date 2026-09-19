@@ -1,12 +1,18 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import styles from "./CustomCursor.module.css";
 
 export function CustomCursor() {
   const dotRef = useRef(null);
   const ringRef = useRef(null);
+  const pathname = usePathname();
+  // Demo pages under /muestras ship their own visual identity (client mockups),
+  // so Axtar's copper cursor shouldn't bleed into them.
+  const isDemoPage = pathname?.startsWith("/muestras/");
 
   useEffect(() => {
+    if (isDemoPage) return;
     const dot = dotRef.current;
     const ring = ringRef.current;
     if (!dot || !ring) return;
@@ -54,7 +60,9 @@ export function CustomCursor() {
       window.removeEventListener("mouseover", onOver);
       cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [isDemoPage]);
+
+  if (isDemoPage) return null;
 
   return (
     <>

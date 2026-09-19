@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import styles from "./Header.module.css";
 
@@ -24,14 +23,7 @@ export function Header() {
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
         <a href="#top" className={styles.brand} onClick={() => setOpen(false)}>
-          <Image
-            src="/logo-mark.png"
-            alt=""
-            width={40}
-            height={40}
-            className={styles.logo}
-            priority
-          />
+          <span className={styles.logo} role="img" aria-label="" />
           <span className={styles.wordmark}>AXTAR STUDIO</span>
         </a>
 

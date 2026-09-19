@@ -7,6 +7,7 @@ const SAMPLES = [
   {
     slug: "navaja-style",
     href: "/muestras/navaja-style",
+    src: "/muestras/navaja-style.jpg",
     title: "Navaja Style",
     kind: "Barbería",
     description: "Reserva de turnos en vivo, precios sin sorpresas y una galería de trabajos que vende el oficio a primera vista.",
@@ -48,30 +49,30 @@ export function Samples() {
           {SAMPLES.map((sample) => (
             <li key={sample.slug} className={styles.item}>
               <div className={styles.frame}>
-                {sample.live ? (
-                  <Link
-                    href={sample.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.livePreview}
-                    aria-label={`Abrir demo en vivo de ${sample.title}`}
-                  >
-                    <span className={styles.liveWordmark}>Navaja Style</span>
-                    <span className={styles.liveStripe}>
-                      Fade · Navaja · Barba · Turno reservado · Fade · Navaja · Barba · Turno reservado
-                    </span>
-                    <span className={styles.liveCta}>Ver demo en vivo ↗</span>
-                  </Link>
-                ) : (
-                  <Image
-                    src={sample.src}
-                    alt={`Landing de muestra para ${sample.title}, ${sample.kind.toLowerCase()}`}
-                    width={1440}
-                    height={900}
-                    sizes="(max-width: 900px) 92vw, 33vw"
-                    className={styles.shot}
-                  />
-                )}
+                {(() => {
+                  const shot = (
+                    <Image
+                      src={sample.src}
+                      alt={`Landing de muestra para ${sample.title}, ${sample.kind.toLowerCase()}`}
+                      width={1440}
+                      height={900}
+                      sizes="(max-width: 900px) 92vw, 33vw"
+                      className={styles.shot}
+                    />
+                  );
+                  return sample.href ? (
+                    <Link
+                      href={sample.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Abrir demo en vivo de ${sample.title}`}
+                    >
+                      {shot}
+                    </Link>
+                  ) : (
+                    shot
+                  );
+                })()}
               </div>
               <div className={styles.meta}>
                 <span className={styles.tag}>{sample.live ? "Demo en vivo" : "Demo"}</span>

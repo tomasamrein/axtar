@@ -1,5 +1,5 @@
 .header {
-  background: oklch(15% 0.008 55 / 0.88);
+  background: oklch(13% 0.035 264 / 0.82);
   backdrop-filter: blur(14px) saturate(1.4);
   -webkit-backdrop-filter: blur(14px) saturate(1.4);
   border-bottom: 1px solid var(--ink-800);
@@ -28,17 +28,9 @@
 .logo {
   display: block;
   flex-shrink: 0;
-  width: 52px;
-  height: 52px;
-  background-color: var(--ink-000);
-  -webkit-mask-image: url("/logo-mark.png");
-  mask-image: url("/logo-mark.png");
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
+  height: 34px;
+  width: auto;
+  filter: drop-shadow(0 0 10px oklch(58% 0.23 264 / 0.5));
 }
 
 .wordmark {
@@ -89,7 +81,7 @@
   letter-spacing: var(--tracking-tight);
   text-decoration: none;
   color: var(--ink-000);
-  background: var(--accent-copper);
+  background: var(--gradient-accent);
   border-radius: 9999px;
   padding: 10px 22px;
   transition: transform 140ms var(--ease-out-expo), box-shadow 180ms;
@@ -97,7 +89,7 @@
 
 .ctaLink:hover {
   transform: scale(1.04);
-  box-shadow: 0 0 22px 3px oklch(64% 0.15 45 / 0.35);
+  box-shadow: 0 0 22px 3px oklch(58% 0.23 264 / 0.4);
 }
 
 .toggle {

@@ -6,9 +6,10 @@ import styles from "./Header.module.css";
 const NAV_LINKS = [
   { href: "#servicios", label: "Servicios" },
   { href: "#proceso", label: "Proceso" },
-  { href: "#casos", label: "Casos" },
+  { href: "#testimonios", label: "Testimonios" },
   { href: "#muestras", label: "Muestras" },
   { href: "#estudio", label: "Estudio" },
+  { href: "#faq", label: "FAQ" },
 ];
 
 export function Header() {
@@ -23,7 +24,7 @@ export function Header() {
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
         <a href="#top" className={styles.brand} onClick={() => setOpen(false)}>
-          <span className={styles.logo} role="img" aria-label="" />
+          <img src="/logo-mark.png" alt="" className={styles.logo} />
           <span className={styles.wordmark}>AXTAR STUDIO</span>
         </a>
 

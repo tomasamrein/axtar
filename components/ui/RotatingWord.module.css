@@ -8,7 +8,10 @@
   display: inline-block;
   position: relative;
   font-style: italic;
-  color: var(--accent-copper);
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   animation: word-in 620ms var(--ease-out-expo) both;
   white-space: nowrap;
 }
@@ -20,7 +23,7 @@
   right: 0;
   bottom: -0.06em;
   height: 0.06em;
-  background: var(--accent-copper);
+  background: var(--gradient-accent);
   transform-origin: left;
   animation: underline-draw 620ms 120ms var(--ease-out-expo) both;
 }

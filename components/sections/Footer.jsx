@@ -6,7 +6,7 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
         <div className={styles.brand}>
-          <span className={styles.logo} role="img" aria-label="" />
+          <img src="/logo-mark.png" alt="" className={styles.logo} />
           <span className={styles.wordmark}>AXTAR STUDIO</span>
         </div>
         <div className={styles.meta}>

@@ -1,6 +1,6 @@
 .section {
   background: var(--ink-950);
-  color: oklch(98% 0.003 55);
+  color: var(--ink-000);
   border-top: var(--border-w) solid var(--ink-800);
 }
 
@@ -14,7 +14,7 @@
   font-size: var(--text-display);
   font-weight: 700;
   letter-spacing: var(--tracking-tighter);
-  color: oklch(98% 0.003 55);
+  color: var(--ink-000);
 }
 
 .lead {
@@ -41,9 +41,9 @@
 }
 
 .frame {
-  border: var(--border-w-thick) solid var(--ink-000);
-  box-shadow: 10px 10px 0 0 var(--accent-copper);
-  background: var(--ink-000);
+  border: 1px solid var(--ink-800);
+  border-radius: var(--radius-frame);
+  background: var(--ink-900);
   overflow: hidden;
   transition: transform var(--duration) var(--ease-out-expo), box-shadow var(--duration) var(--ease-out-expo);
 }
@@ -55,8 +55,8 @@
 }
 
 .item:hover .frame {
-  transform: translate(-4px, -4px);
-  box-shadow: 16px 16px 0 0 var(--accent-copper);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgb(0 0 0 / 0.6), 0 0 0 1px var(--accent-copper);
 }
 
 .meta {
@@ -71,9 +71,10 @@
   font-weight: 700;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: var(--ink-950);
-  background: var(--accent-copper);
-  padding: 3px 8px;
+  color: var(--ink-000);
+  background: var(--gradient-accent);
+  border-radius: var(--radius-pill);
+  padding: 4px 12px;
 }
 
 .title {
@@ -82,7 +83,7 @@
   font-size: var(--text-xl);
   font-weight: 600;
   letter-spacing: var(--tracking-tight);
-  color: oklch(98% 0.003 55);
+  color: var(--ink-000);
 }
 
 .kind {
@@ -90,7 +91,7 @@
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: var(--accent-copper);
+  color: var(--accent-light);
 }
 
 .description {

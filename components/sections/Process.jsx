@@ -8,7 +8,7 @@ import styles from "./Process.module.css";
 // let a real thread play it out. Each message quietly carries one of the old
 // steps: contacto, evaluación, honestidad (no vender de más), propuesta, soporte.
 const MESSAGES = [
-  { from: "you", text: "Hola 👋 Tengo una idea para mi negocio pero no sé por dónde arrancar.", at: "9:41" },
+  { from: "you", text: "Hola, tengo una idea para mi negocio pero no sé por dónde arrancar.", at: "9:41" },
   { from: "axtar", text: "Contame: ¿qué querés resolver?", at: "9:41" },
   { from: "you", text: "Quiero vender online. ¿Necesito una app?", at: "9:42" },
   { from: "axtar", text: "Con una tienda web te alcanza. Una app sería gastar de más.", at: "9:42" },
@@ -88,9 +88,9 @@ export function Process() {
           <p className={styles.eyebrow}>Cómo trabajamos</p>
           <h2 className={styles.heading}>Todo empieza con un mensaje.</h2>
           <p className={styles.lead}>
-            Sin formularios, sin reuniones eternas, sin promesas genéricas. Me escribís, entiendo tu
-            negocio y te paso una propuesta clara: alcance, tiempos y precio antes de arrancar. Y
-            cuando entrego, sigo estando.
+            Sin formularios, sin reuniones eternas. Me escribís, entiendo tu negocio y te paso una
+            propuesta clara: alcance, tiempos y precio antes de arrancar. Y cuando entrego, sigo
+            estando.
           </p>
           <SpotlightButton
             href={getWhatsAppUrl()}

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Magnet from "@/components/reactbits/Magnet";
 import SplitText from "@/components/reactbits/SplitText";
 import { RotatingWord } from "@/components/ui/RotatingWord";
-import { ParticleMesh } from "@/components/ui/ParticleMesh";
 import { SpotlightButton } from "@/components/ui/SpotlightButton";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { toast } from "sonner";
@@ -31,8 +30,10 @@ export function Hero() {
 
   return (
     <section id="top" className={styles.hero}>
-      <div className={styles.mesh} aria-hidden="true">
-        <ParticleMesh className={styles.canvas} />
+      <div className={styles.backdrop} aria-hidden="true">
+        <span className={`${styles.blob} ${styles.blobA}`} />
+        <span className={`${styles.blob} ${styles.blobB}`} />
+        <span className={styles.grid} />
       </div>
 
       <div className={`container ${styles.inner}`}>
@@ -67,7 +68,7 @@ export function Hero() {
           </h1>
 
           <p className={styles.subhead}>
-            Diseñamos, desarrollamos y automatizamos productos digitales. Alcance, tiempos y precio claros antes de arrancar — sin promesas genéricas.
+            Diseño, desarrollo y automatizo productos digitales de punta a punta. Alcance, tiempos y precio claros antes de arrancar — sin promesas genéricas ni intermediarios.
           </p>
 
           <div className={styles.actions}>

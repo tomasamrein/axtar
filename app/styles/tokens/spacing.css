@@ -16,5 +16,10 @@
   --cut-md: 16px;
   --cut-lg: 28px;
 
+  --radius-frame: 16px;
+  --radius-card: 20px;
+  --radius-panel: 22px;
+  --radius-pill: 999px;
+
   --container-max: 1200px;
 }

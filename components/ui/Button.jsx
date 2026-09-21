@@ -42,14 +42,14 @@ export function Button({
 
   const variants = {
     primary: {
-      background: hover ? "var(--accent-copper-hover)" : "var(--accent-copper)",
-      color: "var(--ink-950)",
-      borderColor: "var(--accent-copper)",
-      boxShadow: hover ? "0 0 24px 3px oklch(64% 0.15 45 / 0.35)" : "none",
+      background: "var(--gradient-accent)",
+      color: "var(--ink-000)",
+      borderColor: "transparent",
+      boxShadow: hover ? "0 0 24px 3px oklch(58% 0.23 264 / 0.4)" : "none",
       transform: active ? "scale(0.97)" : hover ? "scale(1.04)" : "scale(1)",
     },
     dark: {
-      background: hover ? "oklch(20% 0.007 55)" : "var(--ink-950)",
+      background: hover ? "var(--ink-900)" : "var(--ink-950)",
       color: "var(--ink-000)",
       borderColor: "var(--ink-950)",
       transform: active ? "scale(0.97)" : hover ? "scale(1.04)" : "scale(1)",
@@ -57,7 +57,7 @@ export function Button({
     secondary: {
       background: "transparent",
       color: hover ? "var(--accent-copper)" : "var(--ink-000)",
-      borderColor: hover ? "var(--accent-copper)" : "oklch(38% 0.006 55)",
+      borderColor: hover ? "var(--accent-copper)" : "var(--ink-700)",
       transform: active ? "scale(0.97)" : hover ? "scale(1.03)" : "scale(1)",
     },
     ghost: {

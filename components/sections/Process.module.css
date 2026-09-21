@@ -28,7 +28,7 @@
   font-weight: 600;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: var(--accent-copper);
+  color: var(--accent-light);
 }
 
 .heading {
@@ -100,7 +100,7 @@
 
 .chatStatus {
   font-size: var(--text-xs);
-  color: var(--accent-copper);
+  color: var(--accent-light);
 }
 
 .thread {
@@ -124,8 +124,8 @@
 
 .you {
   align-self: flex-end;
-  background: var(--accent-copper);
-  color: var(--ink-950);
+  background: var(--gradient-accent);
+  color: var(--ink-000);
   border-bottom-right-radius: 4px;
 }
 

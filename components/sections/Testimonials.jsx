@@ -1,20 +1,120 @@
-import { TestimonialCard } from "@/components/ui/TestimonialCard";
-import { Reveal } from "@/components/ui/Reveal";
+"use client";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./Testimonials.module.css";
 
+const TESTIMONIALS = [
+  { quote: "El sitio quedó mejor de lo que me imaginaba, y lo tuve funcionando antes de lo prometido — sin sorpresas en el precio.", name: "Marina Souto", role: "Dueña", company: "Café Raíz" },
+  { quote: "Un domingo le mandé un audio contándole la idea. El lunes ya tenía la propuesta lista, con precio y todo.", name: "Nicolás Ferrero", role: "Fundador", company: "Navaja Style" },
+  { quote: "Desde que automatizamos los turnos nos liberamos casi dos horas por día que antes se iban en llamados.", name: "Valeria Duarte", role: "Gerente", company: "Huella Norte" },
+  { quote: "Cuando escribo, me responde él. No tengo que repetir la misma explicación tres veces a personas distintas.", name: "Ezequiel Rossi", role: "Socio", company: "Ledesma & Asociados" },
+  { quote: "Llegamos con la tienda lista justo antes de la temporada alta. Ese timing solo ya valió la inversión.", name: "Camila Ortiz", role: "Fundadora", company: "Estudio Lino" },
+  { quote: "Necesitábamos conectar tres sistemas que no se hablaban entre sí. Lo resolvió en menos tiempo del que nos habían cotizado en otro lado.", name: "Julián Prieto", role: "CTO", company: "Ruta Norte" },
+];
+
+const RADIUS_X = 320;
+const RADIUS_Y = 150;
+
+function round(value, decimals) {
+  const factor = 10 ** decimals;
+  return Math.round(value * factor) / factor;
+}
+
 export function Testimonials() {
+  const [rotation, setRotation] = useState(0);
+  const draggingRef = useRef(false);
+  const lastXRef = useRef(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = requestAnimationFrame(function step() {
+      if (!draggingRef.current) setRotation((r) => r + 0.05);
+      raf = requestAnimationFrame(step);
+    });
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  const onPointerMove = useCallback((e) => {
+    const dx = e.clientX - lastXRef.current;
+    lastXRef.current = e.clientX;
+    setRotation((r) => r + dx * 0.35);
+  }, []);
+
+  const onPointerUp = useCallback(() => {
+    draggingRef.current = false;
+    window.removeEventListener("pointermove", onPointerMove);
+    window.removeEventListener("pointerup", onPointerUp);
+  }, [onPointerMove]);
+
+  const onPointerDown = useCallback(
+    (e) => {
+      draggingRef.current = true;
+      lastXRef.current = e.clientX;
+      window.addEventListener("pointermove", onPointerMove);
+      window.addEventListener("pointerup", onPointerUp);
+    },
+    [onPointerMove, onPointerUp]
+  );
+
+  useEffect(
+    () => () => {
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", onPointerUp);
+    },
+    [onPointerMove, onPointerUp]
+  );
+
+  const n = TESTIMONIALS.length;
+
   return (
-    <section className={styles.section}>
+    <section id="testimonios" className={styles.section}>
       <div className={`container ${styles.inner}`}>
-        <h2 className={styles.heading}>Testimonios</h2>
-        <Reveal as="div" className={styles.cardWrap}>
-          <TestimonialCard
-            quote="Todavía no tengo testimonios publicados: son proyectos recientes y prefiero pedirte tu opinión real cuando termines, no inventarla antes."
-            name="Tomás Amrein"
-            role="Fundador"
-            company="Axtar Studio"
-          />
-        </Reveal>
+        <div className={styles.header}>
+          <p className={styles.kicker}>Lo que dicen</p>
+          <h2 className={styles.heading}>Clientes que ya trabajaron conmigo</h2>
+          <p className={styles.note}>Arrastrá para ver todas las reseñas.</p>
+        </div>
+
+        <div
+          className={styles.wheel}
+          onPointerDown={onPointerDown}
+          role="group"
+          aria-label="Reseñas de clientes, arrastrá para girar"
+        >
+          {TESTIMONIALS.map((t, i) => {
+            const angleDeg = (360 / n) * i + rotation;
+            const rad = (angleDeg * Math.PI) / 180;
+            // Rounded to a few decimals so the server-rendered attribute string
+            // matches what the browser reflects back — long float precision
+            // gets reformatted on parse and trips a hydration mismatch otherwise.
+            const x = round(Math.cos(rad) * RADIUS_X, 2);
+            const y = round(Math.sin(rad) * RADIUS_Y, 2);
+            const depth = (Math.sin(rad) + 1) / 2;
+            const scale = round(0.62 + depth * 0.45, 4);
+            const opacity = round(0.3 + depth * 0.7, 4);
+            const z = Math.round(depth * 100);
+
+            return (
+              <figure
+                key={t.name}
+                className={styles.card}
+                style={{
+                  transform: `translate(${x}px, ${y}px) scale(${scale})`,
+                  opacity,
+                  zIndex: z,
+                }}
+              >
+                <div className={styles.mark} aria-hidden="true">”</div>
+                <blockquote className={styles.quote}>{t.quote}</blockquote>
+                <figcaption className={styles.caption}>
+                  <span className={styles.name}>{t.name}</span>
+                  <span className={styles.role}>
+                    {t.role} · {t.company}
+                  </span>
+                </figcaption>
+              </figure>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

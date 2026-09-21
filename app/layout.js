@@ -54,9 +54,9 @@ export default function RootLayout({ children }) {
           position="bottom-right"
           toastOptions={{
             style: {
-              background: "oklch(20% 0.007 55)",
-              color: "oklch(98% 0.003 55)",
-              border: "1.5px solid oklch(38% 0.006 55)",
+              background: "var(--ink-900)",
+              color: "var(--ink-000)",
+              border: "1.5px solid var(--ink-700)",
               borderRadius: "8px",
               fontFamily: "var(--font-manrope), sans-serif",
             },

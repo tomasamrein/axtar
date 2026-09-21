@@ -8,19 +8,69 @@
   justify-content: center;
 }
 
-.mesh {
+.backdrop {
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
   pointer-events: none;
 }
 
-.canvas {
-  width: 100%;
-  height: 100%;
-  opacity: 0.6;
-  -webkit-mask-image: radial-gradient(120% 90% at 50% 40%, #000 55%, transparent 100%);
-  mask-image: radial-gradient(120% 90% at 50% 40%, #000 55%, transparent 100%);
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(20px);
+}
+
+.blobA {
+  top: -10%;
+  right: -10%;
+  width: 640px;
+  height: 640px;
+  background: radial-gradient(circle, oklch(50% 0.24 292 / 0.45), transparent 70%);
+  animation: floatA 14s ease-in-out infinite;
+}
+
+.blobB {
+  bottom: -15%;
+  left: -10%;
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle, oklch(58% 0.23 264 / 0.4), transparent 70%);
+  animation: floatB 16s ease-in-out infinite;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(oklch(30% 0.03 264 / 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(30% 0.03 264 / 0.35) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 30%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(120% 90% at 50% 30%, #000 40%, transparent 100%);
+  animation: gridShift 10s linear infinite;
+}
+
+@keyframes floatA {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(30px, -40px) rotate(8deg); }
+}
+
+@keyframes floatB {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-40px, 30px) rotate(-6deg); }
+}
+
+@keyframes gridShift {
+  from { background-position: 0 0; }
+  to { background-position: 64px 64px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blobA, .blobB, .grid {
+    animation: none;
+  }
 }
 
 .inner {
@@ -92,7 +142,6 @@
 }
 
 .rotor {
-  color: var(--accent-copper);
   display: inline-block;
 }
 

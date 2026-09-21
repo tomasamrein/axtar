@@ -27,7 +27,7 @@
   border-radius: inherit;
   background: radial-gradient(
     circle at var(--sx, 50%) var(--sy, 50%),
-    oklch(64% 0.15 45 / 0.45) 0%,
+    oklch(58% 0.23 264 / 0.45) 0%,
     transparent 65%
   );
   opacity: 0;
@@ -60,17 +60,17 @@
   font-size: var(--text-sm);
 }
 
-/* Primary — copper fill */
+/* Primary — blue → indigo gradient fill */
 .primary {
-  background: var(--accent-copper);
-  color: var(--ink-950);
-  border-color: var(--accent-copper);
-  box-shadow: 0 0 0 0 oklch(64% 0.15 45 / 0);
+  background: var(--gradient-accent);
+  color: var(--ink-000);
+  border-color: transparent;
+  box-shadow: 0 0 0 0 oklch(58% 0.23 264 / 0);
 }
 
 .primary:hover {
   transform: scale(1.04);
-  box-shadow: 0 0 28px 4px oklch(64% 0.15 45 / 0.35);
+  box-shadow: 0 0 28px 4px oklch(58% 0.23 264 / 0.4);
 }
 
 .primary::before {
@@ -85,19 +85,19 @@
 .secondary {
   background: transparent;
   color: var(--ink-000);
-  border-color: oklch(55% 0.005 55);
+  border-color: var(--ink-700);
 }
 
 .secondary:hover {
   border-color: var(--accent-copper);
-  color: var(--accent-copper);
+  color: var(--accent-light);
   transform: scale(1.04);
 }
 
 .secondary::before {
   background: radial-gradient(
     circle at var(--sx, 50%) var(--sy, 50%),
-    oklch(64% 0.15 45 / 0.18) 0%,
+    oklch(58% 0.23 264 / 0.18) 0%,
     transparent 65%
   );
 }
@@ -111,5 +111,5 @@
 
 .inverse:hover {
   transform: scale(1.04);
-  box-shadow: 0 0 24px 4px oklch(98% 0.003 55 / 0.3);
+  box-shadow: 0 0 24px 4px oklch(97% 0.006 264 / 0.3);
 }

@@ -1,6 +1,5 @@
 import { Space_Grotesk, Manrope } from "next/font/google";
 import { Toaster } from "sonner";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import "./styles/globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -48,7 +47,6 @@ export default function RootLayout({ children }) {
       className={`${spaceGrotesk.variable} ${manrope.variable}`}
     >
       <body>
-        <CustomCursor />
         {children}
         <Toaster
           position="bottom-right"

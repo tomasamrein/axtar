@@ -159,6 +159,20 @@
   opacity: 1;
 }
 
+.rowImageWrap {
+  display: none;
+  position: relative;
+  height: 200px;
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+  background: var(--ink-900);
+  margin-bottom: var(--space-4);
+}
+
+.rowImage {
+  object-fit: cover;
+}
+
 .rowHead {
   display: flex;
   align-items: baseline;
@@ -234,6 +248,28 @@
   color: var(--accent-light);
 }
 
+.rowFooter {
+  display: contents;
+}
+
+.rowCta {
+  display: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--ink-000);
+  white-space: nowrap;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  border: 1.5px solid var(--ink-700);
+  transition: border-color 180ms, color 180ms;
+}
+
+.rowCta:hover {
+  border-color: var(--accent-copper);
+  color: var(--accent-light);
+}
+
 /* ── Footer CTA ── */
 .footer {
   display: flex;
@@ -269,15 +305,36 @@
     font-size: var(--text-3xl);
   }
 
+  .panel {
+    display: none;
+  }
+
   .row {
     padding: var(--space-5) 0;
     min-height: 0;
+  }
+
+  .rowImageWrap {
+    display: block;
   }
 
   .tags,
   .description,
   .price {
     margin-left: 0;
+  }
+
+  .rowFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .rowCta {
+    display: inline-flex;
   }
 
   .footer {

@@ -14,7 +14,7 @@ const SERVICES = [
     tags: ["INSTITUCIONAL", "LANDING", "PORTFOLIO", "SEO"],
     description: "Presencia digital profesional lista en semanas, no meses. Diseño propio, sin templates de cuarta.",
     price: "Desde $400.000 ARS",
-    image: "https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    image: "/servicios/sitios-web.jpg",
   },
   {
     id: "custom",
@@ -23,7 +23,7 @@ const SERVICES = [
     tags: ["SISTEMAS", "PLATAFORMAS", "APIS", "BACKEND"],
     description: "Productos y plataformas construidos desde cero, con arquitectura pensada para crecer con tu negocio. Sin atajos.",
     price: "Desde $900.000 ARS",
-    image: "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    image: "/servicios/desarrollo-medida.jpg",
   },
   {
     id: "commerce",
@@ -32,7 +32,7 @@ const SERVICES = [
     tags: ["TIENDA ONLINE", "PAGOS", "ENVÍOS", "MERCADO LIBRE"],
     description: "Tiendas rápidas y seguras, listas para vender desde el primer día. Integración con tus plataformas.",
     price: "Cotización a medida",
-    image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    image: "/servicios/ecommerce.jpg",
   },
   {
     id: "automation",
@@ -41,7 +41,7 @@ const SERVICES = [
     tags: ["N8N", "MAKE", "WHATSAPP", "IA"],
     description: "Flujos a medida que eliminan tareas repetitivas y conectan tus herramientas sin que tengas que tocar nada.",
     price: "Cotización a medida",
-    image: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    image: "/servicios/automatizaciones.jpg",
   },
 ];
 
@@ -116,13 +116,34 @@ export function Services() {
                 }}
                 className={`${styles.row} ${i === active ? styles.rowActive : ""}`}
               >
+                <div className={styles.rowImageWrap}>
+                  <Image
+                    src={s.image}
+                    alt={s.title}
+                    fill
+                    sizes="92vw"
+                    className={styles.rowImage}
+                  />
+                </div>
                 <div className={styles.rowHead}>
                   <span className={styles.num}>{s.num}</span>
                   <h3 className={styles.title}>{s.title}</h3>
                 </div>
                 <p className={styles.tags}>{s.tags.join(" · ")}</p>
                 <p className={styles.description}>{s.description}</p>
-                <p className={styles.price}>{s.price}</p>
+                <div className={styles.rowFooter}>
+                  <p className={styles.price}>{s.price}</p>
+                  <a
+                    className={styles.rowCta}
+                    href={getWhatsAppUrl(
+                      `Hola Tomás, vi Axtar Studio y me interesa el servicio de ${s.title.toLowerCase()}.`
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Consultar →
+                  </a>
+                </div>
               </li>
             ))}
           </ul>

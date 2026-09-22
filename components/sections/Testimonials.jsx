@@ -13,6 +13,10 @@ const TESTIMONIALS = [
 
 const RADIUS_X = 320;
 const RADIUS_Y = 150;
+const CARD_W = 260;
+const CARD_H = 180;
+const CARD_W_MOBILE = 220;
+const CARD_H_MOBILE = 170;
 
 function round(value, decimals) {
   const factor = 10 ** decimals;
@@ -21,8 +25,39 @@ function round(value, decimals) {
 
 export function Testimonials() {
   const [rotation, setRotation] = useState(0);
+  const [radius, setRadius] = useState({ x: RADIUS_X, y: RADIUS_Y });
   const draggingRef = useRef(false);
   const lastXRef = useRef(0);
+  const wheelRef = useRef(null);
+
+  useEffect(() => {
+    const el = wheelRef.current;
+    if (!el) return;
+
+    const measure = () => {
+      const { width, height } = el.getBoundingClientRect();
+      const isMobile = window.innerWidth <= 640;
+      const cardW = isMobile ? CARD_W_MOBILE : CARD_W;
+      const cardH = isMobile ? CARD_H_MOBILE : CARD_H;
+      // Worst-case scale at max X offset is always 0.845 (depth 0.5) and at
+      // max Y offset is 1.07 (depth 1) — see the transform math in render.
+      const maxX = width / 2 - (cardW / 2) * 0.845 - 16;
+      const maxY = height / 2 - (cardH / 2) * 1.07 - 16;
+      setRadius({
+        x: Math.max(40, Math.min(RADIUS_X, maxX)),
+        y: Math.max(40, Math.min(RADIUS_Y, maxY)),
+      });
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    window.addEventListener("resize", measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -75,6 +110,7 @@ export function Testimonials() {
         </div>
 
         <div
+          ref={wheelRef}
           className={styles.wheel}
           onPointerDown={onPointerDown}
           role="group"
@@ -86,8 +122,8 @@ export function Testimonials() {
             // Rounded to a few decimals so the server-rendered attribute string
             // matches what the browser reflects back — long float precision
             // gets reformatted on parse and trips a hydration mismatch otherwise.
-            const x = round(Math.cos(rad) * RADIUS_X, 2);
-            const y = round(Math.sin(rad) * RADIUS_Y, 2);
+            const x = round(Math.cos(rad) * radius.x, 2);
+            const y = round(Math.sin(rad) * radius.y, 2);
             const depth = (Math.sin(rad) + 1) / 2;
             const scale = round(0.62 + depth * 0.45, 4);
             const opacity = round(0.3 + depth * 0.7, 4);

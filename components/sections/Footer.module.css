@@ -58,6 +58,29 @@
   color: var(--text-faint);
 }
 
+.legal {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+
+.legal a {
+  padding-block: 6px;
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  text-decoration: none;
+  transition: color 180ms var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .legal a:hover {
+    color: var(--text);
+  }
+}
+
 @media (max-width: 900px) {
   .inner {
     grid-template-columns: 1fr;

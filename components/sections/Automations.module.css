@@ -323,10 +323,27 @@
   }
 }
 
+@keyframes pulseDown {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(var(--space-6) - 6px));
+    opacity: 0;
+  }
+}
+
 @media (max-width: 560px) {
   .flow {
     grid-template-columns: minmax(0, 1fr);
-    row-gap: var(--space-4);
+    row-gap: var(--space-6);
   }
 
   .node {
@@ -335,22 +352,30 @@
   }
 
   /* En columna el conector baja entre íconos. */
-  .node:not(:last-child)::before {
+  .node:not(:last-child)::before,
+  .node:nth-child(2)::before {
     display: block;
     top: 46px;
     left: 23px;
     right: auto;
     width: 1px;
-    height: var(--space-4);
-    background: var(--line-strong);
+    height: var(--space-6);
+    background: linear-gradient(to bottom, var(--accent-line), var(--line-strong));
   }
 
   .node:not(:last-child)::after,
   .node:nth-child(2)::after {
     display: none;
   }
+}
 
-  .node:nth-child(2)::before {
+@media (max-width: 560px) and (prefers-reduced-motion: no-preference) {
+  .node:not(:last-child)::after,
+  .node:nth-child(2)::after {
     display: block;
+    top: 46px;
+    left: 20.5px;
+    right: auto;
+    animation-name: pulseDown;
   }
 }

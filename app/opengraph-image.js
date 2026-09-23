@@ -52,7 +52,7 @@ export default async function Image() {
         />
 
         <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          <img src={logoSrc} width={76} height={76} style={{ objectFit: "contain" }} />
+          <img src={logoSrc} alt="" width={76} height={76} style={{ objectFit: "contain" }} />
           <span style={{ fontSize: 40, fontWeight: 700, color: "#f5f6fb", letterSpacing: -0.5 }}>
             Axtar Studio
           </span>

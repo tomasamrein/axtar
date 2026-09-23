@@ -22,10 +22,8 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-// axtar.com.ar todavía no resuelve (DNS en propagación) — usamos el dominio de
-// Vercel para que las vistas previas (og:image) sean accesibles ahora mismo.
-// Volver a "https://axtar.com.ar" en cuanto el dominio esté activo.
-const siteUrl = "https://axtar-nine.vercel.app";
+// El apex redirige a www en Vercel, así que www es la URL canónica.
+const siteUrl = "https://www.axtar.com.ar";
 const title = "Axtar Studio: sitios web, software a medida e IA para tu negocio";
 const description =
   "Construimos sitios web y software a medida para llevar tu negocio a la era de la IA, y te acompañamos a integrar inteligencia artificial en tu empresa con asesoramiento cercano.";

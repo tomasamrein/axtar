@@ -1,25 +1,31 @@
-import { Space_Grotesk, Manrope } from "next/font/google";
+import { Funnel_Display, Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import "./styles/globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const funnelDisplay = Funnel_Display({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
-  variable: "--font-space-grotesk",
+  variable: "--font-funnel-display",
   display: "swap",
 });
 
-const manrope = Manrope({
+const geist = Geist({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-manrope",
+  variable: "--font-geist",
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-geist-mono",
   display: "swap",
 });
 
 const siteUrl = "https://axtar.com.ar";
-const title = "Axtar Studio: desarrollo de software a medida";
+const title = "Axtar Studio: sitios web, software a medida e IA para tu negocio";
 const description =
-  "Diseño, desarrollo y automatizo productos digitales a medida para negocios que necesitan una solución que funcione, no una promesa genérica.";
+  "Construimos sitios web y software a medida para llevar tu negocio a la era de la IA, y te acompañamos a integrar inteligencia artificial en tu empresa con asesoramiento cercano.";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -44,7 +50,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="es"
-      className={`${spaceGrotesk.variable} ${manrope.variable}`}
+      className={`${funnelDisplay.variable} ${geist.variable} ${geistMono.variable}`}
     >
       <body>
         {children}
@@ -52,11 +58,11 @@ export default function RootLayout({ children }) {
           position="bottom-right"
           toastOptions={{
             style: {
-              background: "var(--ink-900)",
+              background: "var(--ink-850)",
               color: "var(--ink-000)",
-              border: "1.5px solid var(--ink-700)",
-              borderRadius: "8px",
-              fontFamily: "var(--font-manrope), sans-serif",
+              border: "1px solid var(--line-strong)",
+              borderRadius: "var(--radius-surface)",
+              fontFamily: "var(--font-body)",
             },
           }}
         />

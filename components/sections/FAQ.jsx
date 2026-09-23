@@ -1,7 +1,7 @@
 "use client";
-import { useState } from "react";
-import { Plus } from "lucide-react";
-import { Reveal } from "@/components/ui/Reveal";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/shadcn/accordion";
+import { SpotlightButton } from "@/components/ui/SpotlightButton";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 import styles from "./FAQ.module.css";
 
 const FAQS = [
@@ -10,65 +10,52 @@ const FAQS = [
     a: "Depende del alcance. Una landing o sitio institucional suele estar listo en 1 a 3 semanas. Un sistema a medida o una tienda online lleva entre 4 y 8 semanas, según las integraciones que necesite. Antes de arrancar te paso un cronograma concreto, no una fecha aproximada.",
   },
   {
-    q: "¿Trabajan con clientes que no son de Argentina?",
-    a: "Sí, trabajo con clientes de todo LATAM. Todo el proceso es remoto — nos coordinamos por WhatsApp o videollamada — y adaptamos la forma de pago según el país.",
+    q: "¿Trabajás con clientes que no son de Argentina?",
+    a: "Sí, trabajo con clientes de todo LATAM. Todo el proceso es remoto: nos coordinamos por WhatsApp o videollamada y adaptamos la forma de pago según el país.",
   },
   {
     q: "¿Cómo se define el presupuesto?",
-    a: "Primero entiendo qué necesitás y con qué objetivo. Con eso te armo una propuesta con alcance, tiempos y precio cerrado antes de arrancar — no cobro por hora ni sumo costos ocultos en el camino.",
+    a: "Primero entiendo qué necesitás y con qué objetivo. Con eso te armo una propuesta con alcance, tiempos y precio cerrado antes de arrancar. No cobro por hora ni sumo costos ocultos en el camino.",
   },
   {
-    q: "¿Qué estrategias usan para que un sitio web atraiga clientes?",
-    a: "Un sitio lindo no alcanza si no está pensado para convertir. Trabajo la velocidad de carga, SEO técnico, una estructura de contenido clara y llamados a la acción directos (como WhatsApp) para que quien entra sepa qué hacer. Si el proyecto lo necesita, también sumo analítica para medir qué está funcionando.",
+    q: "¿Cómo hacés para que un sitio atraiga clientes?",
+    a: "Un sitio lindo no alcanza si no está pensado para vender. Lo hago rápido, preparado para aparecer en Google, con textos que responden lo que tu cliente quiere saber y un botón directo a WhatsApp para que quien entra sepa qué hacer. Si el proyecto lo necesita, sumo mediciones para ver qué funciona.",
+  },
+  {
+    q: "¿Cómo me ayudan a sumar inteligencia artificial?",
+    a: "Primero vemos cómo trabaja tu equipo y dónde la IA te ahorra tiempo o te trae ventas de verdad. Después la implementamos (por ejemplo, un agente que atiende tu WhatsApp o automatizaciones entre tus herramientas) y te acompañamos hasta que tu equipo la usa con confianza.",
   },
   {
     q: "¿Qué pasa después de la entrega?",
-    a: "No desaparezco al facturar. Ofrezco soporte y mantenimiento post-entrega, y si en el camino surgen cambios o nuevas necesidades, seguimos trabajando juntos.",
+    a: "No desaparezco al facturar. Tenés soporte personalizado conmigo, sin tickets ni intermediarios: me escribís por WhatsApp y te respondo al instante. Si surgen cambios o nuevas necesidades, seguimos trabajando juntos.",
   },
   {
     q: "¿Cómo es la forma de pago?",
-    a: "Generalmente un anticipo para arrancar y el resto contra entrega. En proyectos más grandes lo dividimos en etapas. Trabajo con transferencia en pesos o dólares, según lo que le quede más cómodo al cliente.",
-  },
-  {
-    q: "¿Cómo arranco un proyecto con vos?",
-    a: "Simple: me escribís por WhatsApp contándome tu idea. Charlamos, entiendo qué necesitás y te paso una propuesta clara. Si te cierra, arrancamos — sin formularios ni reuniones eternas.",
+    a: "Generalmente un anticipo para arrancar y el resto contra entrega. En proyectos más grandes lo dividimos en etapas. Trabajo con transferencia en pesos o dólares, según te quede más cómodo.",
   },
 ];
 
 export function FAQ() {
-  const [open, setOpen] = useState(0);
-
   return (
     <section id="faq" className={styles.section}>
-      <Reveal as="div" className={`container ${styles.inner}`}>
-        <div className={styles.header}>
-          <p className={styles.kicker}>Preguntas frecuentes</p>
-          <h2 className={styles.heading}>Antes de escribirme, capaz esto ya te lo responde</h2>
+      <div className={`container ${styles.inner}`}>
+        <div className={styles.aside}>
+          <h2 className="display">Preguntas frecuentes</h2>
+          <p className={styles.note}>¿No encontrás la tuya? Escribime y te respondo yo, al instante.</p>
+          <SpotlightButton href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" variant="ghost" arrow>
+            Hablemos por WhatsApp
+          </SpotlightButton>
         </div>
 
-        <ul className={styles.list} role="list">
-          {FAQS.map((item, i) => {
-            const isOpen = open === i;
-            return (
-              <li key={item.q} className={styles.item}>
-                <button
-                  type="button"
-                  className={styles.question}
-                  aria-expanded={isOpen}
-                  aria-controls={`faq-panel-${i}`}
-                  onClick={() => setOpen(isOpen ? -1 : i)}
-                >
-                  <span>{item.q}</span>
-                  <Plus className={`${styles.icon} ${isOpen ? styles.iconOpen : ""}`} aria-hidden="true" />
-                </button>
-                <div id={`faq-panel-${i}`} className={`${styles.panel} ${isOpen ? styles.panelOpen : ""}`}>
-                  <p className={styles.answer}>{item.a}</p>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </Reveal>
+        <Accordion type="single" collapsible className={styles.list}>
+          {FAQS.map((item, i) => (
+            <AccordionItem key={item.q} value={`item-${i}`} className={styles.item}>
+              <AccordionTrigger className={styles.trigger}>{item.q}</AccordionTrigger>
+              <AccordionContent className={styles.answer}>{item.a}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
     </section>
   );
 }

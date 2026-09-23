@@ -1,12 +1,11 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { SpotlightButton } from "@/components/ui/SpotlightButton";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import styles from "./Process.module.css";
 
-// The whole funnel ends in WhatsApp, so we don't *describe* the process — we
-// let a real thread play it out. Each message quietly carries one of the old
-// steps: contacto, evaluación, honestidad (no vender de más), propuesta, soporte.
+// The funnel ends in WhatsApp, so a real thread plays the process out instead of describing it.
 const MESSAGES = [
   { from: "you", text: "Hola, tengo una idea para mi negocio pero no sé por dónde arrancar.", at: "9:41" },
   { from: "axtar", text: "Contame: ¿qué querés resolver?", at: "9:41" },
@@ -14,7 +13,7 @@ const MESSAGES = [
   { from: "axtar", text: "Con una tienda web te alcanza. Una app sería gastar de más.", at: "9:42" },
   { from: "axtar", text: "Te armo la propuesta: alcance, tiempos y precio cerrados antes de arrancar.", at: "9:43" },
   { from: "you", text: "¿Y después de la entrega?", at: "9:44" },
-  { from: "axtar", text: "Seguimos. Soporte y mantenimiento — no desaparezco al facturar.", at: "9:44" },
+  { from: "axtar", text: "Seguimos. Soporte y mantenimiento. No desaparezco al facturar.", at: "9:44" },
 ];
 
 export function Process() {
@@ -26,17 +25,17 @@ export function Process() {
     const el = bodyRef.current;
     if (!el) return;
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setCount(MESSAGES.length);
-      return;
-    }
-
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const timers = [];
     let started = false;
 
     const run = () => {
       if (started) return;
       started = true;
+      if (reduced) {
+        setCount(MESSAGES.length);
+        return;
+      }
       let t = 500;
       MESSAGES.forEach((m, i) => {
         if (m.from === "axtar") {
@@ -85,7 +84,6 @@ export function Process() {
     <section id="proceso" className={styles.section}>
       <div className={`container ${styles.inner}`}>
         <div className={styles.copy}>
-          <p className={styles.eyebrow}>Cómo trabajamos</p>
           <h2 className={styles.heading}>Todo empieza con un mensaje.</h2>
           <p className={styles.lead}>
             Sin formularios, sin reuniones eternas. Me escribís, entiendo tu negocio y te paso una
@@ -96,15 +94,15 @@ export function Process() {
             href={getWhatsAppUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            variant="primary"
+            arrow
           >
-            Escribime ahora
+            Hablemos por WhatsApp
           </SpotlightButton>
         </div>
 
         <div className={styles.chat} aria-label="Ejemplo de una conversación con Axtar Studio">
           <header className={styles.chatHeader}>
-            <span className={styles.avatar} aria-hidden="true">A</span>
+            <span className={styles.avatar} aria-hidden="true"><Image src="/logo-mark.png" alt="" width={22} height={18} /></span>
             <span className={styles.chatMeta}>
               <span className={styles.chatName}>Axtar Studio</span>
               <span className={styles.chatStatus}>en línea</span>

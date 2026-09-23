@@ -1,0 +1,105 @@
+.section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: var(--space-9);
+  border-top: 1px solid var(--line);
+}
+
+/* Una sola luz de acento detrás del titular: la sección de IA tiene su propia atmósfera sin romper la paleta. */
+.glow {
+  position: absolute;
+  z-index: -1;
+  inset: -30% -10% auto 30%;
+  height: 90%;
+  background: radial-gradient(ellipse 55% 55% at 60% 30%, oklch(62% 0.22 266 / 0.16), transparent 70%);
+  pointer-events: none;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 860px;
+  margin-bottom: var(--space-8);
+}
+
+.headline {
+  max-width: 20ch;
+}
+
+.accent {
+  color: var(--accent-text);
+}
+
+.steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  counter-reset: none;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--line-strong);
+}
+
+/* Tramo de acento sobre la línea: marca el orden sin necesitar tarjetas. */
+.step::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 48px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  color: var(--accent-text);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+}
+
+.text {
+  margin: 0;
+  max-width: 36ch;
+  color: var(--text-muted);
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-5);
+  margin-top: var(--space-8);
+}
+
+.note {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-faint);
+}
+
+@media (max-width: 860px) {
+  .steps {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+}

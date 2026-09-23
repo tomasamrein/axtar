@@ -1,5 +1,6 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { ArrowUpRight } from "lucide-react";
 import styles from "./SpotlightButton.module.css";
 
 export function SpotlightButton({
@@ -7,41 +8,43 @@ export function SpotlightButton({
   href,
   variant = "primary",
   size = "md",
+  arrow = false,
   target,
   rel,
   onClick,
   type = "button",
-  disabled = false,
+  className = "",
 }) {
   const ref = useRef(null);
-  const [spot, setSpot] = useState(null);
 
-  const onMouseMove = (e) => {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    setSpot({
-      x: ((e.clientX - rect.left) / rect.width) * 100,
-      y: ((e.clientY - rect.top) / rect.height) * 100,
-    });
+  // Written straight to the element: pointer position never goes through React state.
+  const onPointerMove = (e) => {
+    const el = ref.current;
+    if (!el || e.pointerType !== "mouse") return;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty("--sx", `${e.clientX - rect.left}px`);
+    el.style.setProperty("--sy", `${e.clientY - rect.top}px`);
   };
 
-  const onMouseLeave = () => setSpot(null);
+  const cls = [styles.btn, styles[variant], styles[size], className].filter(Boolean).join(" ");
+  const content = (
+    <>
+      <span className={styles.text}>{children}</span>
+      {arrow && <ArrowUpRight className={styles.icon} strokeWidth={1.75} aria-hidden="true" />}
+    </>
+  );
 
-  const cssVars = spot ? { "--sx": `${spot.x}%`, "--sy": `${spot.y}%` } : {};
-  const cls = [styles.btn, styles[variant], styles[size], spot ? styles.lit : ""].filter(Boolean).join(" ");
-  const shared = { ref, className: cls, style: cssVars, onMouseMove, onMouseLeave, onClick };
-
-  if (href && !disabled) {
+  if (href) {
     return (
-      <a href={href} target={target} rel={rel} {...shared}>
-        <span className={styles.text}>{children}</span>
+      <a ref={ref} href={href} target={target} rel={rel} className={cls} onPointerMove={onPointerMove} onClick={onClick}>
+        {content}
       </a>
     );
   }
 
   return (
-    <button type={type} disabled={disabled} {...shared}>
-      <span className={styles.text}>{children}</span>
+    <button ref={ref} type={type} className={cls} onPointerMove={onPointerMove} onClick={onClick}>
+      {content}
     </button>
   );
 }

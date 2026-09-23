@@ -1,9 +1,13 @@
 import { Header } from "@/components/sections/Header";
 import { Hero } from "@/components/sections/Hero";
+import { TechStack } from "@/components/sections/TechStack";
 import { Services } from "@/components/sections/Services";
+import { AiPartner } from "@/components/sections/AiPartner";
+import { Automations } from "@/components/sections/Automations";
+import { Websites } from "@/components/sections/Websites";
+import { Products } from "@/components/sections/Products";
+import { CaseStudy } from "@/components/sections/CaseStudy";
 import { Process } from "@/components/sections/Process";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { Samples } from "@/components/sections/Samples";
 import { About } from "@/components/sections/About";
 import { FAQ } from "@/components/sections/FAQ";
 import { ClosingCta } from "@/components/sections/ClosingCta";
@@ -15,11 +19,15 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <TechStack />
         <Services />
-        <Process />
-        <Testimonials />
-        <Samples />
+        <AiPartner />
+        <Automations />
+        <Websites />
+        <Products />
+        <CaseStudy />
         <About />
+        <Process />
         <FAQ />
         <ClosingCta />
       </main>

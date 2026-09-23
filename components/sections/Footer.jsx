@@ -1,21 +1,40 @@
+import Image from "next/image";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import styles from "./Footer.module.css";
+
+const LINKS = [
+  { href: "#servicios", label: "Servicios" },
+  { href: "#ia", label: "IA" },
+  { href: "#proyectos", label: "Proyectos" },
+  { href: "#productos", label: "Sistemas" },
+  { href: "#caso", label: "Caso de éxito" },
+  { href: "#faq", label: "FAQ" },
+];
 
 export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
         <div className={styles.brand}>
-          <img src="/logo-mark.png" alt="" className={styles.logo} />
-          <span className={styles.wordmark}>AXTAR STUDIO</span>
+          <Image src="/logo-mark.png" alt="" className={styles.logo} width={28} height={22} />
+          <span className={styles.wordmark}>Axtar Studio</span>
         </div>
-        <div className={styles.meta}>
-          <a className={styles.whatsapp} href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-            Hablar por WhatsApp
+
+        <nav className={styles.nav} aria-label="Pie de página">
+          {LINKS.map((l) => (
+            <a key={l.href} href={l.href}>
+              {l.label}
+            </a>
+          ))}
+          <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
+            WhatsApp
           </a>
-          <span>Santo Tomé, Santa Fe, Argentina</span>
+        </nav>
+
+        <p className={styles.meta}>
+          Santo Tomé, Santa Fe, Argentina
           <span>© {new Date().getFullYear()} Axtar Studio</span>
-        </div>
+        </p>
       </div>
     </footer>
   );

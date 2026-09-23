@@ -8,18 +8,17 @@
   --space-7: 48px;
   --space-8: 64px;
   --space-9: 96px;
-  --space-10: 128px;
+  --space-10: 136px;
 
-  --radius-sm: 2px;
-  --radius-md: 3px;
-  --cut-sm: 10px;
-  --cut-md: 16px;
-  --cut-lg: 28px;
-
-  --radius-frame: 16px;
-  --radius-card: 20px;
-  --radius-panel: 22px;
+  /* Shape system: pill for anything you press, 20px for surfaces,
+     12px for media nested inside a surface. */
+  --radius-media: 12px;
+  --radius-surface: 20px;
   --radius-pill: 999px;
+  --radius-frame: var(--radius-media);
+  --radius-card: var(--radius-surface);
+  --radius-panel: var(--radius-surface);
 
-  --container-max: 1200px;
+  --container-max: 1240px;
+  --header-h: 64px;
 }

@@ -1,115 +1,92 @@
 .btn {
   position: relative;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 9999px;
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: var(--tracking-tight);
+  gap: 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: -0.01em;
   text-decoration: none;
+  white-space: nowrap;
   cursor: pointer;
   overflow: hidden;
-  border: 1.5px solid transparent;
   transition:
-    border-color 180ms,
-    color 180ms,
-    transform 140ms var(--ease-out-expo),
-    box-shadow 180ms;
-  isolation: isolate;
-  white-space: nowrap;
+    transform 160ms var(--ease-out),
+    background-color 200ms var(--ease),
+    border-color 200ms var(--ease),
+    box-shadow 200ms var(--ease);
 }
 
 .btn::before {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: -1;
   border-radius: inherit;
-  background: radial-gradient(
-    circle at var(--sx, 50%) var(--sy, 50%),
-    oklch(58% 0.23 264 / 0.45) 0%,
-    transparent 65%
-  );
+  background: radial-gradient(120px circle at var(--sx, 50%) var(--sy, 50%), var(--spot), transparent 70%);
   opacity: 0;
-  transition: opacity 280ms;
-  pointer-events: none;
-}
-
-.lit::before {
-  opacity: 1;
+  transition: opacity 220ms var(--ease);
 }
 
 .btn:active {
-  transform: scale(0.97) !important;
+  transform: scale(0.97);
 }
 
 .text {
   position: relative;
-  z-index: 1;
 }
 
-/* Sizes */
+.icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 220ms var(--ease-out);
+}
+
 .md {
-  padding: 15px 30px;
+  height: 52px;
+  padding-inline: 26px;
   font-size: var(--text-base);
-  gap: 10px;
 }
 
 .sm {
-  padding: 10px 22px;
+  height: 40px;
+  padding-inline: 18px;
   font-size: var(--text-sm);
 }
 
-/* Primary — blue → indigo gradient fill */
 .primary {
-  background: var(--gradient-accent);
+  --spot: oklch(100% 0 0 / 0.28);
+  background: var(--accent);
   color: var(--ink-000);
-  border-color: transparent;
-  box-shadow: 0 0 0 0 oklch(58% 0.23 264 / 0);
+  box-shadow: 0 1px 0 0 oklch(100% 0 0 / 0.25) inset, var(--glow-accent);
 }
 
-.primary:hover {
-  transform: scale(1.04);
-  box-shadow: 0 0 28px 4px oklch(58% 0.23 264 / 0.4);
-}
-
-.primary::before {
-  background: radial-gradient(
-    circle at var(--sx, 50%) var(--sy, 50%),
-    oklch(100% 0 0 / 0.3) 0%,
-    transparent 65%
-  );
-}
-
-/* Secondary — ghost ring */
-.secondary {
-  background: transparent;
+.ghost {
+  --spot: oklch(62% 0.22 266 / 0.22);
+  background: oklch(97.5% 0.005 268 / 0.04);
   color: var(--ink-000);
-  border-color: var(--ink-700);
+  border-color: var(--line-strong);
+  backdrop-filter: blur(8px);
 }
 
-.secondary:hover {
-  border-color: var(--accent-copper);
-  color: var(--accent-light);
-  transform: scale(1.04);
-}
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover::before {
+    opacity: 1;
+  }
 
-.secondary::before {
-  background: radial-gradient(
-    circle at var(--sx, 50%) var(--sy, 50%),
-    oklch(58% 0.23 264 / 0.18) 0%,
-    transparent 65%
-  );
-}
+  .btn:hover .icon {
+    transform: translate(2px, -2px);
+  }
 
-/* Inverse — white fill */
-.inverse {
-  background: var(--ink-000);
-  color: var(--ink-950);
-  border-color: var(--ink-000);
-}
+  .primary:hover {
+    background: var(--accent-hover);
+  }
 
-.inverse:hover {
-  transform: scale(1.04);
-  box-shadow: 0 0 24px 4px oklch(97% 0.006 264 / 0.3);
+  .ghost:hover {
+    border-color: var(--accent-line);
+  }
 }

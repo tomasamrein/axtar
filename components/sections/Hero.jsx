@@ -16,15 +16,10 @@ const LightRays = dynamic(() => import("@/components/reactbits/LightRays"), { ss
 const WORDS = ["negocio", "comercio", "PyME", "empresa"];
 
 // Solo landings: el hero muestra el trabajo de diseño web, los sistemas van más abajo.
-const VERDE = "estudio-verde-jade.vercel.app";
-const FERREYRA = "estudio-ferreyra-seven.vercel.app";
 const STACK = [
-  { src: "/proyectos/estudio-verde.jpg", host: VERDE, label: "Estudio Verde", alt: "Portada de Estudio Verde, arquitectura y paisajismo" },
-  { src: "/proyectos/estudio-ferreyra.jpg", host: FERREYRA, label: "Ferreyra & Asociados", alt: "Portada de Ferreyra & Asociados, estudio contable" },
-  { src: "/proyectos/landing-verde-enfoque.jpg", host: `${VERDE}/#enfoque`, label: "Estudio Verde · Enfoque", alt: "Sección de enfoque de Estudio Verde sobre fondo verde oscuro" },
-  { src: "/proyectos/landing-ferreyra-confianza.jpg", host: `${FERREYRA}/#confianza`, label: "Ferreyra · Confianza", alt: "Sección de confianza de Ferreyra & Asociados con los 15 años del estudio" },
-  { src: "/proyectos/landing-verde-antes-despues.jpg", host: `${VERDE}/#antes-despues`, label: "Estudio Verde · Antes y después", alt: "Comparador de antes y después de una fachada en Estudio Verde" },
-  { src: "/proyectos/landing-ferreyra-nosotros.jpg", host: `${FERREYRA}/#nosotros`, label: "Ferreyra · Nosotros", alt: "Sección de socios de Ferreyra & Asociados con sus retratos" },
+  { src: "/proyectos/estudio-verde.jpg", host: "estudio-verde-jade.vercel.app", label: "Estudio Verde", alt: "Portada de Estudio Verde, arquitectura y paisajismo" },
+  { src: "/proyectos/estudio-ferreyra.jpg", host: "estudio-ferreyra-seven.vercel.app", label: "Ferreyra & Asociados", alt: "Portada de Ferreyra & Asociados, estudio contable" },
+  { src: "/proyectos/navaja-style.jpg", host: "navaja-style.vercel.app", label: "Navaja Style", alt: "Portada de Navaja Style, barbería en Palermo" },
 ];
 
 export function Hero() {

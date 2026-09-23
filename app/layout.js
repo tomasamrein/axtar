@@ -22,7 +22,10 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const siteUrl = "https://axtar.com.ar";
+// axtar.com.ar todavía no resuelve (DNS en propagación) — usamos el dominio de
+// Vercel para que las vistas previas (og:image) sean accesibles ahora mismo.
+// Volver a "https://axtar.com.ar" en cuanto el dominio esté activo.
+const siteUrl = "https://axtar-nine.vercel.app";
 const title = "Axtar Studio: sitios web, software a medida e IA para tu negocio";
 const description =
   "Construimos sitios web y software a medida para llevar tu negocio a la era de la IA, y te acompañamos a integrar inteligencia artificial en tu empresa con asesoramiento cercano.";
@@ -40,7 +43,7 @@ export const metadata = {
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title,
     description,
   },

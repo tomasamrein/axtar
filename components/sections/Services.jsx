@@ -26,8 +26,8 @@ const SERVICES = [
   {
     id: "commerce",
     title: "E-commerce",
-    description: "Tiendas rápidas y seguras, con pagos y envíos integrados, listas para vender desde el primer día.",
-    tags: ["Tienda online", "Mercado Pago", "Envíos"],
+    description: "Tiendas online con Tienda Nube, pagos y envíos integrados, listas para vender desde el primer día.",
+    tags: ["Tienda Nube", "Mercado Pago", "Envíos"],
     price: "Cotización a medida",
     Icon: ShoppingBag,
   },
